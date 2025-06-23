@@ -1,0 +1,81 @@
+.main-container {
+    background-color: #D8E2DC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 equal columns */
+}
+
+.title-left-side-register{
+    font-size: 20px;
+    text-align: center;
+    align-items: center;
+}
+
+p.input-title {
+    margin: 0;
+}
+
+.p-inputtext{
+    width: 100%;
+}
+
+
+
+.left-side-register-component{
+    padding :  2.75rem 1.75rem;
+    min-width: 30vw;
+}
+
+.right-side-register-component{
+background: linear-gradient(to bottom,
+  #E7C6CC33,
+  #C8A6ADCC
+);
+    min-width: 30vw;
+
+}
+
+.login-btn-container{
+    padding: 10vh 0rem 1vh 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.p-button.p-button-raised{
+    background-color: #59A5D8;
+}
+
+:host ::ng-deep{
+
+    .p-password-input{
+    width: 100%;
+    }
+    .p-password{
+    width: 100%;
+}
+    .p-card-body{
+    padding: 0px;
+}
+
+.p-card-content{
+    padding: 0px;
+}
+
+.p-button{
+    background: #59A5D8;
+    border: 1px solid #59A5D8;
+}
+
+.p-button:hover{
+    background: #418CC7;
+    border: 1px solid #418CC7;
+}
+}

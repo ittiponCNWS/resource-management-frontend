@@ -1,0 +1,32 @@
+<div class="main-container">
+  <p-card>
+    <div class="two-column-layout">
+      <div class="left-side-register-component">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="title-left-side-register">
+            <p>Soong System</p>
+          </div>
+          <div style="padding: 0.5rem 0rem">
+            <p class="input-title">username</p>
+            <input type="text" pInputText formControlName="username" />
+          </div>
+          <div style="padding: 0.5rem 0rem">
+            <p class="input-title">password</p>
+            <p-password
+              formControlName="password"
+              [toggleMask]="true"
+              [feedback]="false"
+            />
+            <div style="padding: 0.5rem 0rem">
+              <a href="">Forget Password?</a>
+            </div>
+          </div>
+          <div class="login-btn-container">
+            <p-button type="submit" label="Sign in" [raised]="true" />
+          </div>
+        </form>
+      </div>
+      <div class="right-side-register-component"></div>
+    </div>
+  </p-card>
+</div>
