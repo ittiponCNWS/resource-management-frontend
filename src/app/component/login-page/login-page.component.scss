@@ -1,5 +1,7 @@
+@import "./../../../styles.scss";
+
 .main-container {
-    background-color: #D8E2DC;
+    background-color: $background-color;
     display: flex;
     justify-content: center;
     align-items: center;

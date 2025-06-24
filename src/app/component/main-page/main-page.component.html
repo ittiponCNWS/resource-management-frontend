@@ -1,0 +1,86 @@
+<!-- <p-sidebar
+  [(visible)]="sidebarVisible"
+  (visibleChange)="onVisibleChange($event)"
+  position="left"
+>
+  <h3>Left Sidebar</h3>
+</p-sidebar> -->
+
+<!-- <div class="homepage-container">
+  <div>
+    <p-sidebar
+      *ngIf="sidebarVisible"
+      [(visible)]="sidebarVisible"
+      position="left"
+      [modal]="false"
+      [showCloseIcon]="false"
+      styleClass="full-sidebar"
+      [ngClass]="{ 'width-full-sidebar': sidebarVisible }"
+    >
+      <div class="p-3">
+        <button
+          pButton
+          label="Close"
+          icon="pi pi-angle-left"
+          (click)="sidebarVisible = false"
+        ></button>
+        <div class="card flex justify-content-center">
+          <p-menu [model]="items" />
+        </div>
+      </div>
+    </p-sidebar> -->
+
+<!-- Mini Sidebar -->
+<!-- <div
+      *ngIf="!sidebarVisible"
+      class="mini-sidebar"
+      (click)="sidebarVisible = true"
+      [ngClass]="{ 'width-mini-sidebar': sidebarVisible }"
+    >
+      <i class="pi pi-angle-right"></i>
+    </div>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div> -->
+
+<div class="layout-container">
+  <!-- Sidebar -->
+  <div class="menu" [class.closed]="!sidebarVisible">
+    <div class="menu-inner">
+      <div
+        [ngClass]="{
+          'hamburger-btn-full-sidebar': sidebarVisible,
+          'hamburger-btn-mini-sidebar': !sidebarVisible
+        }"
+      >
+        <button class="hamburger" (click)="onVisibleChange()">
+          <i class="pi pi-bars"></i>
+        </button>
+      </div>
+
+      <!-- Only show menu when open -->
+      <p-menu *ngIf="sidebarVisible" [model]="items"></p-menu>
+    </div>
+  </div>
+
+  <div class="right-container">
+    <!-- Top bar with hamburger -->
+    <div class="top-bar">
+      <p-card
+        ><div class="nav-top-bar">
+          <div style="font-size: 1rem">{{ titleName }}</div>
+          <div class="user-icons">
+            {{ userName }}
+            <i class="pi pi-bell" title="Notifications"></i>
+            <i class="pi pi-cog" title="Settings"></i>
+          </div></div
+      ></p-card>
+    </div>
+    <!-- Main Content Area -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

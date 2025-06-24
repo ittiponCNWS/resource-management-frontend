@@ -8,10 +8,16 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { SidebarModule } from 'primeng/sidebar';
+import { MenuModule } from 'primeng/menu';
 
 import { routes } from './app.routes';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MainPageComponent } from './component/main-page/main-page.component';
+import { HomePageComponent } from './component/home-page/home-page.component';
+import { FriendPageComponent } from './component/friend-page/friend-page.component';
+import { AdminSettingPageComponent } from './component/admin-setting-page/admin-setting-page.component';
 
 @NgModule({
   imports: [
@@ -25,10 +31,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     InputTextModule,
     PasswordModule,
     ButtonModule,
+    SidebarModule,
+    MenuModule,
 
     RouterModule.forRoot(routes),
   ],
-  declarations: [AppComponent, LoginPageComponent],
+  declarations: [
+    AppComponent,
+    LoginPageComponent,
+    MainPageComponent,
+    HomePageComponent,
+    FriendPageComponent,
+    AdminSettingPageComponent,
+  ],
   bootstrap: [AppComponent],
   exports: [RouterModule],
 })

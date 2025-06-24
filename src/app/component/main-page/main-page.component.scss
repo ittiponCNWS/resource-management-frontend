@@ -1,0 +1,123 @@
+@import "./../../../styles.scss";
+
+.layout-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $background-color;
+}
+
+/* Sidebar wrapper */
+.menu {
+  width: 20vw;
+  transition: width 0.3s ease;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+/* Collapsed state */
+.menu.closed {
+  width: 3.5vw;
+}
+
+/* Inner content (hamburger always visible) */
+.menu-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem 0rem;
+}
+
+.hamburger-btn-full-sidebar {
+  display: flex;
+  justify-content: end;
+  padding-right: 1rem;
+}
+
+.hamburger-btn-mini-sidebar {
+  display: flex;
+  justify-content: end;
+  padding-right: 0.8rem;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-bottom: 1rem;
+}
+
+/* Main content */
+.right-container {
+  flex: 1;
+  background-color: $background-color;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.content {
+  padding: 2rem 1rem;
+  height: 90vh;
+}
+
+.nav-top-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* space between username and icons */
+  font-size: 1rem;
+}
+
+.user-icons i {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.user-icons i:hover {
+  color: #007ad9;
+}
+
+:host ::ng-deep {
+  .menu {
+    border-radius: 0 3.125rem 0 0;
+  }
+  .p-menu {
+    width: 100%;
+    border: none;
+  }
+  .p-sidebar .p-sidebar-content {
+    padding: 0rem;
+  }
+
+  .p-sidebar-header {
+    display: none;
+  }
+  .p-menu .p-menuitem > .p-menuitem-content .p-menuitem-link {
+    padding: 2rem 1.25rem;
+  }
+  .p-card-content {
+    padding: 0;
+  }
+  .p-card {
+    border-radius: 1rem;
+  }
+
+  .p-menu
+    .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus
+    > .p-menuitem-content {
+    background-color: $background-btn-menu-item !important; /* Active background */
+    color: #ffffff !important;
+  }
+
+  .p-menu
+    .p-menuitem:not(.p-highlight):not(.p-disabled)
+    > .p-menuitem-content:hover {
+    background-color: $background-btn-menu-item-hover !important;
+  }
+}
