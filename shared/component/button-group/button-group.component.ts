@@ -8,6 +8,7 @@ import { BUTTON_NAME } from '../../const/shared.enum';
 })
 export class ButtonGroupComponent {
   @Input({ required: true }) buttonGroup!: BUTTON_NAME[];
+  @Input({ required: true }) selectedItem!: any[];
   @Output() clickButtonEmitter = new EventEmitter<BUTTON_NAME>();
 
   BUTTONNAME = BUTTON_NAME;
@@ -18,5 +19,23 @@ export class ButtonGroupComponent {
 
   onClickButton(eventType: BUTTON_NAME) {
     this.clickButtonEmitter.emit(eventType);
+  }
+
+  checkDisabledButton(buttonName: BUTTON_NAME): boolean {
+    switch (buttonName) {
+      case BUTTON_NAME.ADD:
+        return false;
+      case BUTTON_NAME.EDIT:
+        return this.selectedItem?.length !== 1;
+      case BUTTON_NAME.DELETE:
+        return (
+          this.selectedItem?.length === undefined ||
+          this.selectedItem?.length <= 0
+        );
+      case BUTTON_NAME.EXPORT:
+        return false;
+      default:
+        return false;
+    }
   }
 }

@@ -8,6 +8,7 @@ import { BUTTON_NAME } from '../../../../shared/const/shared.enum';
 })
 export class AdminSettingPageComponent {
   BUTTONNAME = BUTTON_NAME;
+  selectedItem = [];
 
   buttonGroup = [
     this.BUTTONNAME.ADD,

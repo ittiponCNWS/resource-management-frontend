@@ -1,6 +1,7 @@
 <div class="button-container">
   <app-button-group
     [buttonGroup]="buttonGroup"
+    [selectedItem]="selectedFriendList"
     (clickButtonEmitter)="onClickButton($event)"
   ></app-button-group>
 </div>
@@ -22,7 +23,7 @@
           <input
             type="text"
             pInputText
-            formControlName="searchField"
+            [formControl]="searchField"
             placeholder="Search..."
           />
         </div>

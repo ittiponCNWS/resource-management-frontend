@@ -2,6 +2,7 @@
   <div *ngFor="let button of buttonGroup">
     <app-button
       [buttonName]="button"
+      [disabledButton]="checkDisabledButton(button)"
       (clickButtonEmitter)="onClickButton($event)"
     ></app-button>
   </div>

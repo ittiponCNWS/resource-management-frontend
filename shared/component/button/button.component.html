@@ -2,6 +2,7 @@
   <p-button
     [label]="buttonName"
     [raised]="true"
+    [disabled]="disabledButton"
     [ngClass]="{
       'add-button': buttonName === BUTTON_NAME.ADD,
       'edit-button': buttonName === BUTTON_NAME.EDIT,
