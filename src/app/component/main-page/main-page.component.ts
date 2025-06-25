@@ -31,6 +31,14 @@ export class MainPageComponent {
         routerLinkActiveOptions: { exact: true },
       },
       {
+        label: 'Role Permission',
+        routerLink: '/main/role-permission',
+        command: () => {
+          this.titleName = 'Role Permission';
+        },
+        routerLinkActiveOptions: { exact: true },
+      },
+      {
         label: 'Admin Setting',
         routerLink: '/main/admin-setting',
         command: () => {

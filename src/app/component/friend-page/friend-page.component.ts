@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BUTTON_NAME } from '../../../../shared/const/shared.enum';
 import { FriendService } from '../../service/friend.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-friend-page',
@@ -11,6 +12,7 @@ export class FriendPageComponent {
   BUTTONNAME = BUTTON_NAME;
   friendList!: any[];
   selectedFriendList!: any;
+  searchField = new FormControl('');
 
   buttonGroup = [
     this.BUTTONNAME.ADD,

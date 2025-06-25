@@ -5,6 +5,7 @@ import { MainPageComponent } from './component/main-page/main-page.component';
 import { FriendPageComponent } from './component/friend-page/friend-page.component';
 import { AdminSettingPageComponent } from './component/admin-setting-page/admin-setting-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
+import { RolePermissionPageComponent } from './component/role-permission-page/role-permission-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,6 +21,10 @@ export const routes: Routes = [
       {
         path: 'friend',
         component: FriendPageComponent,
+      },
+      {
+        path: 'role-permission',
+        component: RolePermissionPageComponent,
       },
       {
         path: 'admin-setting',

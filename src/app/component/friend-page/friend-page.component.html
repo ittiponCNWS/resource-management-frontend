@@ -15,6 +15,19 @@
     [tableStyle]="{ 'min-width': '50rem' }"
     (selectionChange)="onSelectionChange($event)"
   >
+    <ng-template pTemplate="caption">
+      <div class="caption-container">
+        <div class="title">Friend List</div>
+        <div class="search">
+          <input
+            type="text"
+            pInputText
+            formControlName="searchField"
+            placeholder="Search..."
+          />
+        </div>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 4rem">
