@@ -1,0 +1,13 @@
+<div *ngIf="buttonName !== null">
+  <p-button
+    [label]="buttonName"
+    [raised]="true"
+    [ngClass]="{
+      'add-button': buttonName === BUTTON_NAME.ADD,
+      'edit-button': buttonName === BUTTON_NAME.EDIT,
+      'delete-button': buttonName === BUTTON_NAME.DELETE,
+      'export-button': buttonName === BUTTON_NAME.EXPORT
+    }"
+    (onClick)="onClickButton(buttonName)"
+  />
+</div>

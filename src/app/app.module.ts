@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { SidebarModule } from 'primeng/sidebar';
 import { MenuModule } from 'primeng/menu';
+import { TableModule } from 'primeng/table';
 
 import { routes } from './app.routes';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,12 +19,15 @@ import { MainPageComponent } from './component/main-page/main-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
 import { FriendPageComponent } from './component/friend-page/friend-page.component';
 import { AdminSettingPageComponent } from './component/admin-setting-page/admin-setting-page.component';
+import { SharedModule } from '../../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     //angular feature
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ReactiveFormsModule,
 
     //primeng
@@ -33,7 +37,9 @@ import { AdminSettingPageComponent } from './component/admin-setting-page/admin-
     ButtonModule,
     SidebarModule,
     MenuModule,
+    TableModule,
 
+    SharedModule, // ✅ Import here
     RouterModule.forRoot(routes),
   ],
   declarations: [

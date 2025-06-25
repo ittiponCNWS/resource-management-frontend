@@ -1,0 +1,8 @@
+<div class="button-container">
+  <div *ngFor="let button of buttonGroup">
+    <app-button
+      [buttonName]="button"
+      (clickButtonEmitter)="onClickButton($event)"
+    ></app-button>
+  </div>
+</div>
