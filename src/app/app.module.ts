@@ -21,6 +21,7 @@ import { FriendPageComponent } from './component/friend-page/friend-page.compone
 import { AdminSettingPageComponent } from './component/admin-setting-page/admin-setting-page.component';
 import { SharedModule } from '../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RolePermissionPageComponent } from './component/role-permission-page/role-permission-page.component';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomePageComponent,
     FriendPageComponent,
     AdminSettingPageComponent,
+    RolePermissionPageComponent,
   ],
   bootstrap: [AppComponent],
   exports: [RouterModule],
