@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BUTTON_NAME } from '../../../../shared/const/shared.enum';
 import { FriendService } from '../../service/friend.service';
 import { FormControl } from '@angular/forms';
+import { AppDialogService } from '../../../../shared/service/app-dialog.service';
+import { FriendPageDialogComponent } from './friend-page-dialog/friend-page-dialog.component';
 
 @Component({
   selector: 'app-friend-page',
@@ -21,7 +23,10 @@ export class FriendPageComponent {
     this.BUTTONNAME.EXPORT,
   ];
 
-  constructor(private _friendService: FriendService) {}
+  constructor(
+    private _friendService: FriendService,
+    private _appDialogService: AppDialogService
+  ) {}
 
   ngOnInit() {
     this._friendService.getFriendList().subscribe({
@@ -34,7 +39,11 @@ export class FriendPageComponent {
   onClickButton(eventType: BUTTON_NAME) {
     switch (eventType) {
       case BUTTON_NAME.ADD: {
-        console.log('ADD Event');
+        this._appDialogService
+          .openDialog('Add Friend', FriendPageDialogComponent)
+          .onClose.subscribe((res) => {
+            console.log('Close Success', res);
+          });
         break;
       }
       case BUTTON_NAME.EDIT: {

@@ -22,6 +22,7 @@ import { AdminSettingPageComponent } from './component/admin-setting-page/admin-
 import { SharedModule } from '../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RolePermissionPageComponent } from './component/role-permission-page/role-permission-page.component';
+import { FriendPageDialogComponent } from './component/friend-page/friend-page-dialog/friend-page-dialog.component';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { RolePermissionPageComponent } from './component/role-permission-page/ro
     MainPageComponent,
     HomePageComponent,
     FriendPageComponent,
+    FriendPageDialogComponent,
     AdminSettingPageComponent,
     RolePermissionPageComponent,
   ],
