@@ -4,10 +4,12 @@
     [raised]="true"
     [disabled]="disabledButton"
     [ngClass]="{
-      'add-button': buttonName === BUTTON_NAME.ADD,
+      'add-button':
+        buttonName === BUTTON_NAME.ADD || buttonName === BUTTON_NAME.SAVE,
       'edit-button': buttonName === BUTTON_NAME.EDIT,
       'delete-button': buttonName === BUTTON_NAME.DELETE,
-      'export-button': buttonName === BUTTON_NAME.EXPORT
+      'export-button': buttonName === BUTTON_NAME.EXPORT,
+      'cancel-button': buttonName === BUTTON_NAME.CANCEL
     }"
     (onClick)="onClickButton(buttonName)"
   />

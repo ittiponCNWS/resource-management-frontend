@@ -32,6 +32,11 @@
     border: 1px solid #6ca0dc;
   }
 
+  .cancel-button > button {
+    background: #f5b7b1;
+    border: 1px solid #f5b7b1;
+  }
+
   .p-button:focus {
     outline: none !important;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),

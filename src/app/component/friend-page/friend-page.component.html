@@ -3,6 +3,7 @@
     [buttonGroup]="buttonGroup"
     [selectedItem]="selectedFriendList"
     (clickButtonEmitter)="onClickButton($event)"
+    [buttonJustifyContent]="'end'"
   ></app-button-group>
 </div>
 
@@ -53,7 +54,7 @@
           <ng-template #notFav>-</ng-template>
         </td>
         <td class="text-center">
-          {{ friend.birthDate | date : "mediumDate" }}
+          {{ friend.birthDay | date : "mediumDate" }}
         </td>
         <td class="text-center">{{ friend.phoneNumber }}</td>
         <td class="text-center">{{ friend.gender }}</td>

@@ -1,4 +1,4 @@
-import { Friend } from '../models/friend.interface';
+import { Friend } from '../interface/friend.interface';
 
 export const MOCK_FRIEND_LIST: Friend[] = [
   {

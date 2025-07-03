@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -9,7 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class LoginPageComponent {
   loginForm: FormGroup;
 
-  constructor() {
+  constructor(private _router: Router, private _route: ActivatedRoute) {
     this.loginForm = new FormGroup({
       username: new FormControl(''),
       password: new FormControl(''),
@@ -18,6 +19,6 @@ export class LoginPageComponent {
 
   onSubmit(): void {
     // Process checkout data here
-    console.log(this.loginForm.getRawValue());
+    this._router.navigate(['/main'], { relativeTo: this._route });
   }
 }

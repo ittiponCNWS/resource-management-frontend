@@ -1,0 +1,50 @@
+<div class="form-field" [ngSwitch]="inputType">
+  <label class="field-label">{{ fieldName }}</label>
+  <!-- Text Input -->
+  <div *ngSwitchCase="'Text'">
+    <input
+      pInputText
+      type="text"
+      [formControl]="formControl"
+      [ngClass]="inputClass"
+    />
+  </div>
+
+  <!-- Number Input -->
+  <div *ngSwitchCase="'Number'">
+    <p-inputNumber
+      [formControl]="formControl"
+      [ngClass]="inputClass"
+    ></p-inputNumber>
+  </div>
+
+  <!-- Date Input -->
+  <div *ngSwitchCase="'Date'">
+    <p-calendar
+      [formControl]="formControl"
+      dateFormat="yy-mm-dd"
+      [ngClass]="inputClass"
+      [appendTo]="'body'"
+      [showIcon]="true"
+    ></p-calendar>
+  </div>
+
+  <!-- Dropdown Input -->
+  <div *ngSwitchCase="'Dropdown'">
+    <p-dropdown
+      [options]="dropdownOption"
+      [formControl]="formControl"
+      [optionLabel]="optionName"
+      [optionValue]="optionValue"
+      [ngClass]="inputClass"
+      placeholder="Select"
+    />
+  </div>
+
+  <div *ngSwitchCase="'Switch'">
+    <p-inputSwitch [formControl]="formControl"></p-inputSwitch>
+  </div>
+
+  <!-- Default -->
+  <div *ngSwitchDefault>Unsupported input type</div>
+</div>

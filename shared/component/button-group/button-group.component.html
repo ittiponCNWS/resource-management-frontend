@@ -1,4 +1,11 @@
-<div class="button-container">
+<div
+  class="button-container"
+  [ngClass]="{
+    'button-justify-start': buttonJustifyContent === 'start',
+    'button-justify-center': buttonJustifyContent === 'center',
+    'button-justify-end': buttonJustifyContent === 'end'
+  }"
+>
   <div *ngFor="let button of buttonGroup">
     <app-button
       [buttonName]="button"

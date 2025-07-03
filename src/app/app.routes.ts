@@ -6,6 +6,8 @@ import { FriendPageComponent } from './component/friend-page/friend-page.compone
 import { AdminSettingPageComponent } from './component/admin-setting-page/admin-setting-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
 import { RolePermissionPageComponent } from './component/role-permission-page/role-permission-page.component';
+import { AdminSettingPageDetailComponent } from './component/admin-setting-page/admin-setting-page-detail/admin-setting-page-detail.component';
+import { RolePermissionDetailPageComponent } from './component/role-permission-page/role-permission-detail-page/role-permission-detail-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,6 +16,11 @@ export const routes: Routes = [
     path: 'main',
     component: MainPageComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
       {
         path: 'home',
         component: HomePageComponent,
@@ -27,8 +34,16 @@ export const routes: Routes = [
         component: RolePermissionPageComponent,
       },
       {
+        path: 'role-permission/role-permission-detail-page',
+        component: RolePermissionDetailPageComponent,
+      },
+      {
         path: 'admin-setting',
         component: AdminSettingPageComponent,
+      },
+      {
+        path: 'admin-setting/admin-setting-page-detail',
+        component: AdminSettingPageDetailComponent,
       },
     ],
   },

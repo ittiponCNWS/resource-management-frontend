@@ -4,6 +4,7 @@ import { FriendService } from '../../service/friend.service';
 import { FormControl } from '@angular/forms';
 import { AppDialogService } from '../../../../shared/service/app-dialog.service';
 import { FriendPageDialogComponent } from './friend-page-dialog/friend-page-dialog.component';
+import { LoadingService } from '../../../../shared/service/loading.service';
 
 @Component({
   selector: 'app-friend-page',
@@ -25,13 +26,20 @@ export class FriendPageComponent {
 
   constructor(
     private _friendService: FriendService,
-    private _appDialogService: AppDialogService
+    private _appDialogService: AppDialogService,
+    private _loadingService: LoadingService
   ) {}
 
   ngOnInit() {
+    this.getFriendList();
+  }
+
+  getFriendList() {
+    this._loadingService.show();
     this._friendService.getFriendList().subscribe({
       next: (res) => {
         this.friendList = res;
+        this._loadingService.hide();
       },
     });
   }
@@ -40,9 +48,12 @@ export class FriendPageComponent {
     switch (eventType) {
       case BUTTON_NAME.ADD: {
         this._appDialogService
-          .openDialog('Add Friend', FriendPageDialogComponent)
+          .openDialog(
+            { headerDialog: 'Add Friend', data: null, dialogType: 'Add' },
+            FriendPageDialogComponent
+          )
           .onClose.subscribe((res) => {
-            console.log('Close Success', res);
+            if (res === true) this.getFriendList();
           });
         break;
       }
@@ -51,7 +62,29 @@ export class FriendPageComponent {
         break;
       }
       case BUTTON_NAME.DELETE: {
-        console.log('DELETE Event');
+        this._appDialogService
+          .openDeleteDialog({ dialogType: 'Delete' })
+          .onClose.subscribe((res) => {
+            console.log(res);
+            if (res === true) {
+              this._loadingService.show();
+              this._friendService
+                .deleteFriend(this.selectedFriendList)
+                .subscribe({
+                  next: () => {
+                    this.selectedFriendList = [];
+                    this._loadingService.hide();
+                  },
+                  error: (err) => {
+                    console.log(err.error.message);
+                    this._loadingService.hide();
+                  },
+                  complete: () => {
+                    this.getFriendList();
+                  },
+                });
+            }
+          });
         break;
       }
       case BUTTON_NAME.EXPORT: {

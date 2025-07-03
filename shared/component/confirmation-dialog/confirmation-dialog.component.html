@@ -1,0 +1,14 @@
+<div>
+  <p *ngIf="dialogConfig.dialogType === 'Delete'">
+    Are you sure you want to delete this item?
+  </p>
+  <p *ngIf="dialogConfig.dialogType === null">No content</p>
+</div>
+<div>
+  <app-button-group
+    [buttonGroup]="buttonGroup"
+    [selectedItem]="[]"
+    (clickButtonEmitter)="onClickButton($event)"
+    [buttonJustifyContent]="'center'"
+  ></app-button-group>
+</div>

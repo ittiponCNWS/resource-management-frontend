@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BUTTON_NAME } from '../../../../shared/const/shared.enum';
 import { FormControl } from '@angular/forms';
 import { RolePermissionService } from '../../service/role-permission.service';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-role-permission-page',
@@ -21,7 +22,11 @@ export class RolePermissionPageComponent implements OnInit {
     this.BUTTONNAME.EXPORT,
   ];
 
-  constructor(private _rolePermisisonService: RolePermissionService) {}
+  constructor(
+    private _rolePermisisonService: RolePermissionService,
+    private _router: Router,
+    private _route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this._rolePermisisonService.getRolePermissionList().subscribe({
@@ -34,6 +39,9 @@ export class RolePermissionPageComponent implements OnInit {
   onClickButton(eventType: BUTTON_NAME) {
     switch (eventType) {
       case BUTTON_NAME.ADD: {
+        this._router.navigate(['role-permission-detail-page'], {
+          relativeTo: this._route,
+        });
         console.log('ADD Event');
         break;
       }

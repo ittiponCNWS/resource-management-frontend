@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { BUTTON_NAME } from '../../../../../shared/const/shared.enum';
 import { AppDialogService } from '../../../../../shared/service/app-dialog.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { GENDER_DROPDOWN } from '../../const/dropdown.const';
+import { FriendService } from '../../../service/friend.service';
 
 @Component({
   selector: 'app-friend-page-dialog',
@@ -12,15 +14,20 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class FriendPageDialogComponent implements OnInit {
   BUTTONNAME = BUTTON_NAME;
   formGroup: FormGroup;
+  gendetDropdownOption = GENDER_DROPDOWN;
+  buttonGroup = [this.BUTTONNAME.SAVE, this.BUTTONNAME.CANCEL];
 
-  constructor(private _AppDialogService: AppDialogService) {
+  constructor(
+    private _AppDialogService: AppDialogService,
+    private _friendService: FriendService
+  ) {
     this.formGroup = new FormGroup({
-      fristName: new FormControl('Ittipon'),
-      lastName: new FormControl('Chinawangso'),
-      isFavorite: new FormControl(24),
-      birthDay: new FormControl(new Date()),
+      firstName: new FormControl('Ittipon', [Validators.required]),
+      lastName: new FormControl('Chinawangso', [Validators.required]),
+      isFavorite: new FormControl(false),
+      birthDay: new FormControl(new Date(), [Validators.required]),
       phoneNumber: new FormControl('0918850500'),
-      gender: new FormControl('Male'),
+      gender: new FormControl('Male', [Validators.required]),
       remark: new FormControl('None'),
     });
   }
@@ -28,8 +35,25 @@ export class FriendPageDialogComponent implements OnInit {
 
   onClickButton(event: BUTTON_NAME) {
     switch (event) {
-      case BUTTON_NAME.ADD:
-        this._AppDialogService.closeDialog(this.formGroup.getRawValue());
+      case BUTTON_NAME.SAVE:
+        if (this.formGroup.valid) {
+          this._friendService
+            .createFriend(this.formGroup.getRawValue())
+            .subscribe({
+              next: () => {
+                this._AppDialogService.closeDialog(true);
+              },
+              error: (err) => {
+                console.log(err.error?.message);
+              },
+            });
+        }
+        break;
+      case BUTTON_NAME.CANCEL:
+        this._AppDialogService.closeDialog();
+        break;
+      default:
+        break;
     }
   }
 }

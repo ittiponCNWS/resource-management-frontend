@@ -1,0 +1,61 @@
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+.input-text-width-10vw {
+  width: 10vw;
+}
+
+.input-text-width-20vw {
+  width: 20vw;
+}
+
+.input-text-width-30vw {
+  width: 30vw;
+}
+
+.input-text-width-40vw {
+  width: 40vw;
+}
+
+.input-text-width-60vw {
+  width: 60vw;
+}
+
+.input-text-width-75vw {
+  width: 75vw;
+}
+
+:host::ng-deep {
+  .input-width-10vw span,
+  .input-width-10vw .p-dropdown {
+    width: 10vw;
+  }
+
+  .input-width-20vw span,
+  .input-width-20vw .p-dropdown {
+    width: 20vw;
+  }
+
+  .input-width-30vw span,
+  .input-width-30vw .p-dropdown {
+    width: 30vw;
+  }
+
+  .input-width-40vw span,
+  .input-width-40vw .p-dropdown {
+    width: 40vw;
+  }
+
+  .input-width-60vw span,
+  .input-width-60vw .p-dropdown {
+    width: 60vw;
+  }
+}

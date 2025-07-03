@@ -1,0 +1,58 @@
+<div class="button-container">
+  <app-button-group
+    [buttonGroup]="buttonGroup"
+    [selectedItem]="[]"
+    (clickButtonEmitter)="onClickButton($event)"
+    [buttonJustifyContent]="'end'"
+  ></app-button-group>
+</div>
+
+<form [formGroup]="form">
+  <div class="field-layout">
+    <div class="role-name-input">
+      <p>Role Name :</p>
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="''"
+        [formControlName]="'roleName'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+    </div>
+  </div>
+  <p-table
+    [value]="permissions.controls"
+    responsiveLayout="scroll"
+    [scrollable]="true"
+    scrollHeight="60vh"
+    scrollDirection="horizontal"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Page</th>
+        <th>View</th>
+        <th>Create</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Export</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-row let-i="rowIndex">
+      <tr [formGroup]="row">
+        <!-- ✅ This is key -->
+        <td>{{ row.get("pageName")?.value }}</td>
+        <td><p-checkbox formControlName="view" binary="true"></p-checkbox></td>
+        <td>
+          <p-checkbox formControlName="create" binary="true"></p-checkbox>
+        </td>
+        <td><p-checkbox formControlName="edit" binary="true"></p-checkbox></td>
+        <td>
+          <p-checkbox formControlName="delete" binary="true"></p-checkbox>
+        </td>
+        <td>
+          <p-checkbox formControlName="export" binary="true"></p-checkbox>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</form>

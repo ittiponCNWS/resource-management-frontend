@@ -1,7 +1,86 @@
-<div class="button-container">
+<div>
   <app-button-group
     [buttonGroup]="buttonGroup"
     [selectedItem]="selectedItem"
     (clickButtonEmitter)="onClickButton($event)"
+    [buttonJustifyContent]="'end'"
   ></app-button-group>
+</div>
+
+<div class="content-container">
+  <p-table
+    [(selection)]="selectedAdminList"
+    [value]="adminList"
+    dataKey="id"
+    [scrollable]="true"
+    scrollHeight="60vh"
+    scrollDirection="horizontal"
+    [tableStyle]="{ 'min-width': '60rem' }"
+    (selectionChange)="onSelectionChange($event)"
+  >
+    <ng-template pTemplate="caption">
+      <div class="caption-container">
+        <div class="title">User List</div>
+        <div class="search">
+          <input
+            type="text"
+            pInputText
+            [formControl]="searchField"
+            placeholder="Search..."
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+        <th class="text-center">ชื่อผู้ใช้ (Username)</th>
+        <th class="text-center">รหัสผ่าน (Password)</th>
+        <th class="text-center">อีเมล (Email)</th>
+        <th class="text-center">ชื่อ (First Name)</th>
+        <th class="text-center">นามสกุล (Last Name)</th>
+        <th class="text-center">วันเกิด (Date of Birth)</th>
+        <th class="text-center">เพศ (Gender)</th>
+        <th class="text-center">เบอร์โทรศัพท์ (Phone Number)</th>
+        <th class="text-center">ที่อยู่ (Address)</th>
+        <th class="text-center">วันที่ลงทะเบียน (Registration Date)</th>
+        <th class="text-center">สิทธิ์การใช้งาน (User Role)</th>
+        <th class="text-center">สถานะการใช้งาน (Status)</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td><p-tableCheckbox [value]="user" /></td>
+        <td>{{ user.username }}</td>
+        <td>********</td>
+        <!-- Masked for security -->
+        <td>{{ user.email }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td class="text-center">
+          {{ user.dateOfBirth | date : "mediumDate" }}
+        </td>
+        <td class="text-center">{{ user.gender }}</td>
+        <td>{{ user.phoneNumber }}</td>
+        <td>{{ user.address }}</td>
+        <td class="text-center">
+          {{ user.registrationDate | date : "mediumDate" }}
+        </td>
+        <td>{{ user.role }}</td>
+        <td>
+          <span
+            [ngClass]="{
+              'status-active': user.status === 'active',
+              'status-suspended': user.status === 'suspended',
+              'status-unavailable': user.status === 'unavailable'
+            }"
+          >
+            {{ user.status }}
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

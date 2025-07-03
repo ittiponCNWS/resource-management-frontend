@@ -8,7 +8,8 @@ import { BUTTON_NAME } from '../../const/shared.enum';
 })
 export class ButtonGroupComponent {
   @Input({ required: true }) buttonGroup!: BUTTON_NAME[];
-  @Input({ required: true }) selectedItem!: any[];
+  @Input({ required: true }) selectedItem: any[] | null = null;
+  @Input() buttonJustifyContent: 'start' | 'center' | 'end' = 'start';
   @Output() clickButtonEmitter = new EventEmitter<BUTTON_NAME>();
 
   BUTTONNAME = BUTTON_NAME;

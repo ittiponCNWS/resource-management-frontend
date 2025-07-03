@@ -1,4 +1,4 @@
-import { RolePermission } from '../models/role-permission.interface';
+import { RolePermission } from '../interface/role-permission.interface';
 
 export const MOCK_ROLE_PERMISSIONS: RolePermission[] = [
   {

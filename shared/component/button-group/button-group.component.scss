@@ -1,5 +1,10 @@
 .button-container {
   display: flex;
-  justify-content: end;
   gap: 0.5rem;
+
+  @each $pos, $justify in (start: flex-start, center: center, end: flex-end) {
+    &.button-justify-#{$pos} {
+      justify-content: #{$justify};
+    }
+  }
 }

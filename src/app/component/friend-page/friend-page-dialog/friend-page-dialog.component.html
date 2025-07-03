@@ -1,7 +1,66 @@
-<p>Hello this is dialog for you</p>
+<div>
+  <form action="" [formGroup]="formGroup">
+    <div class="field-layout">
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="'First Name'"
+        [formControlName]="'firstName'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
 
-<app-button
-  [buttonName]="BUTTONNAME.ADD"
-  [disabledButton]="false"
-  (clickButtonEmitter)="onClickButton($event)"
-></app-button>
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="'Last Name'"
+        [formControlName]="'lastName'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+    </div>
+    <div class="field-layout">
+      <app-form-input
+        [inputType]="'Switch'"
+        [fieldName]="'Favorite'"
+        [formControlName]="'isFavorite'"
+        [inputClass]="'input-width-20vw'"
+      ></app-form-input>
+
+      <app-form-input
+        [inputType]="'Date'"
+        [fieldName]="'Birth Day'"
+        [formControlName]="'birthDay'"
+        [inputClass]="'input-width-20vw'"
+      ></app-form-input>
+    </div>
+
+    <div class="field-layout">
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="'Phone Number'"
+        [formControlName]="'phoneNumber'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+
+      <app-form-input
+        [inputType]="'Dropdown'"
+        [fieldName]="'Gender'"
+        [formControlName]="'gender'"
+        [inputClass]="'input-width-20vw'"
+        [dropdownOption]="gendetDropdownOption"
+      ></app-form-input>
+    </div>
+
+    <div class="field-layout">
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="'Remark'"
+        [formControlName]="'remark'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+    </div>
+  </form>
+  <app-button-group
+    [buttonGroup]="buttonGroup"
+    [selectedItem]="null"
+    [buttonJustifyContent]="'center'"
+    (clickButtonEmitter)="onClickButton($event)"
+  ></app-button-group>
+</div>

@@ -1,0 +1,91 @@
+<div>
+  <app-button-group
+    [buttonGroup]="buttonGroup"
+    [selectedItem]="[]"
+    (clickButtonEmitter)="onClickButton($event)"
+    [buttonJustifyContent]="'end'"
+  ></app-button-group>
+</div>
+
+<div class="form-content">
+  <form action="" [formGroup]="formGroup">
+    <div class="field-layout">
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="'Username'"
+        [formControlName]="'username'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="'Password'"
+        [formControlName]="'password'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+    </div>
+    <div class="field-layout">
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="'Firstname'"
+        [formControlName]="'firstName'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="'Lastname'"
+        [formControlName]="'lastName'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+    </div>
+    <div class="field-layout">
+      <app-form-input
+        [inputType]="'Date'"
+        [fieldName]="'Birth Day'"
+        [formControlName]="'birthDay'"
+        [inputClass]="'input-width-20vw'"
+      ></app-form-input>
+      <app-form-input
+        [inputType]="'Dropdown'"
+        [fieldName]="'Gender'"
+        [formControlName]="'gender'"
+        [inputClass]="'input-width-20vw'"
+        [dropdownOption]="gendetDropdownOption"
+      ></app-form-input>
+    </div>
+
+    <div class="field-layout">
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="'Phone Number'"
+        [formControlName]="'phoneNumber'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+
+      <app-form-input
+        [inputType]="'Date'"
+        [fieldName]="'Register Date'"
+        [formControlName]="'registerDate'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+    </div>
+
+    <div class="field-layout">
+      <app-form-input
+        [inputType]="'Dropdown'"
+        [fieldName]="'User Role'"
+        [formControlName]="'userRoleId'"
+        [inputClass]="'input-width-20vw'"
+        [dropdownOption]="[]"
+      ></app-form-input>
+      <app-form-input
+        [inputType]="'Dropdown'"
+        [fieldName]="'Status'"
+        [formControlName]="'statusId'"
+        [inputClass]="'input-width-20vw'"
+        [dropdownOption]="[]"
+      ></app-form-input>
+    </div>
+  </form>
+</div>

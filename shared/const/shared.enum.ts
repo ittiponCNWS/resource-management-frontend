@@ -3,4 +3,6 @@ export enum BUTTON_NAME {
   EDIT = 'Edit',
   DELETE = 'Delete',
   EXPORT = 'Export',
+  SAVE = 'Save',
+  CANCEL = 'Cancel',
 }

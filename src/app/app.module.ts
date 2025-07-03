@@ -23,6 +23,9 @@ import { SharedModule } from '../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RolePermissionPageComponent } from './component/role-permission-page/role-permission-page.component';
 import { FriendPageDialogComponent } from './component/friend-page/friend-page-dialog/friend-page-dialog.component';
+import { AdminSettingPageDetailComponent } from './component/admin-setting-page/admin-setting-page-detail/admin-setting-page-detail.component';
+import { RolePermissionDetailPageComponent } from './component/role-permission-page/role-permission-detail-page/role-permission-detail-page.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   imports: [
@@ -40,6 +43,7 @@ import { FriendPageDialogComponent } from './component/friend-page/friend-page-d
     SidebarModule,
     MenuModule,
     TableModule,
+    CheckboxModule,
 
     SharedModule, // ✅ Import here
     RouterModule.forRoot(routes),
@@ -52,7 +56,9 @@ import { FriendPageDialogComponent } from './component/friend-page/friend-page-d
     FriendPageComponent,
     FriendPageDialogComponent,
     AdminSettingPageComponent,
+    AdminSettingPageDetailComponent,
     RolePermissionPageComponent,
+    RolePermissionDetailPageComponent,
   ],
   bootstrap: [AppComponent],
   exports: [RouterModule],

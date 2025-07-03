@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { RolePermission } from '../../interface/role-permission.interface';
 import { Observable, of } from 'rxjs';
-import { MOCK_ROLE_PERMISSIONS } from '../../mock/role-permission.mock';
+import { IUserList } from '../../interface/user-setting.interface';
+import { MOCK_USERS } from '../../mock/admin-setting.mock';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RolePermissionService {
+export class AdminSettingService {
   constructor() {}
-  getRolePermissionList(): Observable<RolePermission[]> {
+  getIUserList(): Observable<IUserList[]> {
     // return this._http
-    //   .get<RolePermission[]>('http://localhost:8080/api/role-permission')
-    //   .pipe(catchError(this.handleError<RolePermission[]>('getRolePermissionList', [])));
-    return of(MOCK_ROLE_PERMISSIONS);
+    //   .get<IUserList[]>('http://localhost:8080/api/role-permission')
+    //   .pipe(catchError(this.handleError<IUserList[]>('getIUserListList', [])));
+    return of(MOCK_USERS);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
