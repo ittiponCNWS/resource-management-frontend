@@ -11,7 +11,22 @@ export class FriendFactory {
       firstName: data?.firstName ?? '',
       lastName: data?.lastName ?? '',
       isFavorite: data?.isFavorite ?? false,
-      birthDate: data?.birthDate?.toISOString() ?? new Date().toISOString(),
+      birthDay: data?.birthDay?.toISOString() ?? new Date().toISOString(),
+      phoneNumber: data?.phoneNumber ?? '',
+      gender: data?.gender ?? '',
+      remark: data?.remark ?? '',
+    };
+  }
+
+  public editFriend(data: Friend, id: number): IFriendCreateReq {
+    return {
+      id: id ?? 0,
+      firstName: data?.firstName ?? '',
+      lastName: data?.lastName ?? '',
+      isFavorite: data?.isFavorite ?? false,
+      birthDay:
+        data?.birthDay?.toLocaleDateString('en-CA') ??
+        new Date().toLocaleDateString('en-CA'),
       phoneNumber: data?.phoneNumber ?? '',
       gender: data?.gender ?? '',
       remark: data?.remark ?? '',

@@ -27,8 +27,9 @@ export class FriendService {
     // return of(MOCK_FRIEND_LIST);
   }
 
-  editFriend(payload: Friend): Observable<Friend[]> {
-    return this._http.post<Friend[]>(this.baseUrl + '/api/friend', payload);
+  editFriend(payload: Friend, id: number): Observable<any> {
+    const req = this.friendFactory.editFriend(payload, id);
+    return this._http.put<Friend>(this.baseUrl + '/api/friend', req);
     // return of(MOCK_FRIEND_LIST);
   }
 

@@ -1,6 +1,7 @@
 import { Injectable, Type } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmationDialogComponent } from '../component/confirmation-dialog/confirmation-dialog.component';
+import { IDialogConfig } from '../interface/shared.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,7 @@ export class AppDialogService {
   constructor(public dialogService: DialogService) {}
 
   openDialog(
-    dialogConfig: {
-      data: any | null;
-      headerDialog: string;
-      dialogType: 'Add' | 'Edit';
-    },
+    dialogConfig: IDialogConfig,
     componentType: Type<any>
   ): DynamicDialogRef {
     return (this.ref = this.dialogService.open(componentType, {
@@ -25,7 +22,7 @@ export class AppDialogService {
       baseZIndex: 10000,
       maximizable: true,
       styleClass: 'custom-dialog',
-      data: dialogConfig.data,
+      data: dialogConfig,
     }));
   }
 

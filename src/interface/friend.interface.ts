@@ -3,7 +3,7 @@ export interface Friend {
   firstName: string;
   lastName: string;
   isFavorite: boolean;
-  birthDate: Date;
+  birthDay: Date;
   phoneNumber: string;
   gender: string;
   remark: string;
@@ -14,7 +14,7 @@ export interface IFriendCreateReq {
   firstName: string;
   lastName: string;
   isFavorite: boolean;
-  birthDate: string;
+  birthDay: string;
   phoneNumber: string;
   gender: string;
   remark: string;

@@ -13,6 +13,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { ConfirmationDialogComponent } from './component/confirmation-dialog/confirmation-dialog.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoadingComponent } from './component/loading/loading.component';
+import { InputRequireDirective } from './directive/inputRequire.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoadingComponent } from './component/loading/loading.component';
     FormInputComponent,
     ConfirmationDialogComponent,
     LoadingComponent,
+    InputRequireDirective,
   ],
   imports: [
     CommonModule,
@@ -41,6 +43,7 @@ import { LoadingComponent } from './component/loading/loading.component';
     FormInputComponent,
     ConfirmationDialogComponent,
     LoadingComponent,
+    InputRequireDirective,
   ],
   providers: [DialogService],
 })

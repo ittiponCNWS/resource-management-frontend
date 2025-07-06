@@ -14,9 +14,7 @@ export class ButtonGroupComponent {
 
   BUTTONNAME = BUTTON_NAME;
 
-  constructor() {
-    console.log(this.buttonGroup);
-  }
+  constructor() {}
 
   onClickButton(eventType: BUTTON_NAME) {
     this.clickButtonEmitter.emit(eventType);

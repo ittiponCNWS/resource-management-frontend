@@ -5,27 +5,47 @@
     <input
       pInputText
       type="text"
-      [formControl]="formControl"
-      [ngClass]="inputClass"
+      [ngModel]="value"
+      (input)="onInput($event)"
+      [class]="inputClass"
+      [ngClass]="{
+        ' ng-invalid ng-dirty':
+          getControl?.invalid && (getControl?.touched || getControl?.dirty)
+      }"
+      [appInputRequire]="ngControl.control!"
     />
   </div>
 
   <!-- Number Input -->
   <div *ngSwitchCase="'Number'">
     <p-inputNumber
-      [formControl]="formControl"
-      [ngClass]="inputClass"
+      [ngModel]="value"
+      (input)="onInput($event)"
+      [appInputRequire]="ngControl.control!"
+      [class]="inputClass"
+      [ngClass]="{
+        '{{inputClass}}': true,
+        ' ng-invalid ng-dirty':
+          getControl?.invalid && (getControl?.touched || getControl?.dirty)
+      }"
     ></p-inputNumber>
   </div>
 
   <!-- Date Input -->
   <div *ngSwitchCase="'Date'">
     <p-calendar
-      [formControl]="formControl"
+      [ngModel]="value"
       dateFormat="yy-mm-dd"
-      [ngClass]="inputClass"
       [appendTo]="'body'"
       [showIcon]="true"
+      (input)="onInput($event)"
+      [appInputRequire]="ngControl.control!"
+      [class]="inputClass"
+      [ngClass]="{
+        '{{inputClass}}': true,
+        ' ng-invalid ng-dirty':
+          getControl?.invalid && (getControl?.touched || getControl?.dirty)
+      }"
     ></p-calendar>
   </div>
 
@@ -33,16 +53,32 @@
   <div *ngSwitchCase="'Dropdown'">
     <p-dropdown
       [options]="dropdownOption"
-      [formControl]="formControl"
+      [ngModel]="value"
       [optionLabel]="optionName"
       [optionValue]="optionValue"
-      [ngClass]="inputClass"
+      [class]="inputClass"
+      [ngClass]="{
+        '{{inputClass}}': true,
+        ' ng-invalid ng-dirty':
+          getControl?.invalid && (getControl?.touched || getControl?.dirty)
+      }"
       placeholder="Select"
+      (input)="onInput($event)"
+      [appInputRequire]="ngControl.control!"
     />
   </div>
 
   <div *ngSwitchCase="'Switch'">
-    <p-inputSwitch [formControl]="formControl"></p-inputSwitch>
+    <p-inputSwitch
+      [ngModel]="value"
+      (input)="onInput($event)"
+      [ngClass]="{
+        '{{inputClass}}': true,
+        ' ng-invalid ng-dirty':
+          getControl?.invalid && (getControl?.touched || getControl?.dirty)
+      }"
+      [appInputRequire]="ngControl.control!"
+    ></p-inputSwitch>
   </div>
 
   <!-- Default -->

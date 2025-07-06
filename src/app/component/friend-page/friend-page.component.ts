@@ -58,7 +58,22 @@ export class FriendPageComponent {
         break;
       }
       case BUTTON_NAME.EDIT: {
-        console.log('EDIT Event');
+        this._appDialogService
+          .openDialog(
+            {
+              headerDialog: 'Edit Friend',
+              data: this.selectedFriendList[0],
+              dialogType: 'Edit',
+            },
+            FriendPageDialogComponent
+          )
+          .onClose.subscribe((res) => {
+            if (res === true) {
+              this.getFriendList();
+              this.selectedFriendList = [];
+            }
+          });
+        break;
         break;
       }
       case BUTTON_NAME.DELETE: {
