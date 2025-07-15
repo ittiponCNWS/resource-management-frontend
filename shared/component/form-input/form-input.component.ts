@@ -1,5 +1,6 @@
 import {
   Component,
+  EventEmitter,
   forwardRef,
   Input,
   OnInit,
@@ -38,6 +39,10 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
   @Input() dropdownOption: any[] = [];
   @Input() optionValue: string = 'value';
   @Input() optionName: string = 'label';
+
+  @Output() textChange = new EventEmitter<string>();
+  @Output() valueChange = new EventEmitter<any>();
+
   private onValidatorChange: () => void = () => {};
   private _onValidate:
     | ((control: AbstractControl) => ValidationErrors | null)
@@ -45,13 +50,14 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
 
   constructor(@Optional() @Self() public ngControl: NgControl) {
     if (this.ngControl) this.ngControl.valueAccessor = this;
+    console.log(this.ngControl.valueAccessor);
   }
 
   get getControl() {
     return this.ngControl.control;
   }
 
-  value: any;
+  value: any = null;
   disabled = false;
 
   onChange = (value: any) => {};
@@ -93,9 +99,21 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
   }
 
   onInput(event: any) {
-    console.log(this.ngControl.control);
-    this.value = event.target.value;
+    this.updateValue(event.target.value);
+  }
+
+  onSelect(event: any) {
+    this.updateValue(event.value);
+  }
+
+  onSwitch(event: any) {
+    this.updateValue(event.checked);
+  }
+
+  updateValue(newValue: any): void {
+    this.value = newValue;
     this.onChange(this.value);
     this.onTouched();
+    this.valueChange.emit(this.value);
   }
 }

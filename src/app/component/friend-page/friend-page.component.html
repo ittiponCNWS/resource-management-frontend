@@ -53,12 +53,16 @@
           <span *ngIf="friend.isFavorite; else notFav">★</span>
           <ng-template #notFav>-</ng-template>
         </td>
-        <td class="text-center">
-          {{ friend.birthDay | date : "mediumDate" }}
-        </td>
+        <td class="text-center">{{ friend.birthDay | date : "mediumDate" }}</td>
         <td class="text-center">{{ friend.phoneNumber }}</td>
         <td class="text-center">{{ friend.gender }}</td>
         <td>{{ friend.remark }}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8" class="text-center">NO DATA</td>
       </tr>
     </ng-template>
   </p-table>

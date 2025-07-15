@@ -31,7 +31,7 @@ export class FriendPageDialogComponent implements OnInit {
       lastName: new FormControl(null, [Validators.required]),
       isFavorite: new FormControl(false),
       birthDay: new FormControl(new Date(), [Validators.required]),
-      phoneNumber: new FormControl(null),
+      phoneNumber: new FormControl(null, [Validators.required]),
       gender: new FormControl(null, [Validators.required]),
       remark: new FormControl(null),
     });
@@ -85,6 +85,8 @@ export class FriendPageDialogComponent implements OnInit {
                 },
               });
           }
+        } else {
+          this.formGroup.markAllAsTouched();
         }
         break;
       case BUTTON_NAME.CANCEL:

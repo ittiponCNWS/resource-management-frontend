@@ -20,12 +20,10 @@
   <div *ngSwitchCase="'Number'">
     <p-inputNumber
       [ngModel]="value"
-      (input)="onInput($event)"
-      [appInputRequire]="ngControl.control!"
+      (onInput)="updateValue($event)"
       [class]="inputClass"
       [ngClass]="{
-        '{{inputClass}}': true,
-        ' ng-invalid ng-dirty':
+        'ng-invalid ng-dirty':
           getControl?.invalid && (getControl?.touched || getControl?.dirty)
       }"
     ></p-inputNumber>
@@ -42,7 +40,6 @@
       [appInputRequire]="ngControl.control!"
       [class]="inputClass"
       [ngClass]="{
-        '{{inputClass}}': true,
         ' ng-invalid ng-dirty':
           getControl?.invalid && (getControl?.touched || getControl?.dirty)
       }"
@@ -53,17 +50,16 @@
   <div *ngSwitchCase="'Dropdown'">
     <p-dropdown
       [options]="dropdownOption"
-      [ngModel]="value"
       [optionLabel]="optionName"
       [optionValue]="optionValue"
       [class]="inputClass"
       [ngClass]="{
-        '{{inputClass}}': true,
         ' ng-invalid ng-dirty':
           getControl?.invalid && (getControl?.touched || getControl?.dirty)
       }"
       placeholder="Select"
-      (input)="onInput($event)"
+      [(ngModel)]="value"
+      (onChange)="onSelect($event)"
       [appInputRequire]="ngControl.control!"
     />
   </div>
@@ -71,9 +67,8 @@
   <div *ngSwitchCase="'Switch'">
     <p-inputSwitch
       [ngModel]="value"
-      (input)="onInput($event)"
+      (onChange)="onSwitch($event)"
       [ngClass]="{
-        '{{inputClass}}': true,
         ' ng-invalid ng-dirty':
           getControl?.invalid && (getControl?.touched || getControl?.dirty)
       }"
