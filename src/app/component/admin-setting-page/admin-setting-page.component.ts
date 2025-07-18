@@ -3,6 +3,7 @@ import { BUTTON_NAME } from '../../../../shared/const/shared.enum';
 import { FormControl } from '@angular/forms';
 import { AdminSettingService } from '../../service/admin-setting.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IUserList } from '../../../interface/user-setting.interface';
 
 @Component({
   selector: 'app-admin-setting-page',
@@ -12,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AdminSettingPageComponent {
   BUTTONNAME = BUTTON_NAME;
   selectedItem = [];
-  adminList!: any[];
+  adminList!: IUserList[];
   selectedAdminList!: any;
   searchField = new FormControl('');
 
@@ -33,6 +34,7 @@ export class AdminSettingPageComponent {
     this._adminSettingService.getIUserList().subscribe({
       next: (res) => {
         this.adminList = res;
+        console.log(res);
       },
     });
   }

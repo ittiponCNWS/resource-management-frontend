@@ -38,7 +38,7 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
   @Input() inputClass: string = '';
   @Input() dropdownOption: any[] = [];
   @Input() optionValue: string = 'value';
-  @Input() optionName: string = 'label';
+  @Input() optionLabel: string = 'label';
 
   @Output() textChange = new EventEmitter<string>();
   @Output() valueChange = new EventEmitter<any>();

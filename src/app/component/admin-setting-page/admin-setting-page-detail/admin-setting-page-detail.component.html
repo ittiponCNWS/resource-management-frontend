@@ -75,16 +75,20 @@
       <app-form-input
         [inputType]="'Dropdown'"
         [fieldName]="'User Role'"
-        [formControlName]="'userRoleId'"
+        [formControlName]="'roleID'"
         [inputClass]="'input-width-20vw'"
-        [dropdownOption]="[]"
+        [optionValue]="'roleID'"
+        [optionLabel]="'roleName'"
+        [dropdownOption]="roleDropdownOption"
       ></app-form-input>
       <app-form-input
         [inputType]="'Dropdown'"
         [fieldName]="'Status'"
-        [formControlName]="'statusId'"
+        [formControlName]="'statusID'"
         [inputClass]="'input-width-20vw'"
-        [dropdownOption]="[]"
+        [optionValue]="'statusID'"
+        [optionLabel]="'statusName'"
+        [dropdownOption]="statusDropdownOption"
       ></app-form-input>
     </div>
   </form>

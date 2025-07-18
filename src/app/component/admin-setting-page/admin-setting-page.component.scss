@@ -34,3 +34,10 @@
     border-radius: 0.75rem 0.75rem 0 0;
   }
 }
+
+.text-truncate-cell td {
+  max-width: 15vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -36,14 +36,13 @@
       <tr>
         <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
         <th class="text-center">ชื่อผู้ใช้ (Username)</th>
-        <th class="text-center">รหัสผ่าน (Password)</th>
-        <th class="text-center">อีเมล (Email)</th>
+        <!-- <th class="text-center">อีเมล (Email)</th> -->
         <th class="text-center">ชื่อ (First Name)</th>
         <th class="text-center">นามสกุล (Last Name)</th>
         <th class="text-center">วันเกิด (Date of Birth)</th>
         <th class="text-center">เพศ (Gender)</th>
         <th class="text-center">เบอร์โทรศัพท์ (Phone Number)</th>
-        <th class="text-center">ที่อยู่ (Address)</th>
+        <!-- <th class="text-center">ที่อยู่ (Address)</th> -->
         <th class="text-center">วันที่ลงทะเบียน (Registration Date)</th>
         <th class="text-center">สิทธิ์การใช้งาน (User Role)</th>
         <th class="text-center">สถานะการใช้งาน (Status)</th>
@@ -51,12 +50,11 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-user>
-      <tr>
+      <tr class="text-truncate-cell">
         <td><p-tableCheckbox [value]="user" /></td>
-        <td>{{ user.username }}</td>
-        <td>********</td>
+        <td>{{ user.userName }}</td>
         <!-- Masked for security -->
-        <td>{{ user.email }}</td>
+        <!-- <td>{{ user.email }}</td> -->
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
         <td class="text-center">
@@ -64,20 +62,20 @@
         </td>
         <td class="text-center">{{ user.gender }}</td>
         <td>{{ user.phoneNumber }}</td>
-        <td>{{ user.address }}</td>
+        <!-- <td>{{ user.address }}</td> -->
         <td class="text-center">
-          {{ user.registrationDate | date : "mediumDate" }}
+          {{ user.registerDate | date : "mediumDate" }}
         </td>
-        <td>{{ user.role }}</td>
+        <td>{{ user.roleName }}</td>
         <td>
           <span
             [ngClass]="{
-              'status-active': user.status === 'active',
-              'status-suspended': user.status === 'suspended',
-              'status-unavailable': user.status === 'unavailable'
+              'status-active': user.statusName === 'active',
+              'status-suspended': user.statusName === 'suspended',
+              'status-unavailable': user.statusName === 'unavailable'
             }"
           >
-            {{ user.status }}
+            {{ user.statusName }}
           </span>
         </td>
       </tr>

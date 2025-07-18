@@ -10,6 +10,8 @@ export interface IUserList {
   phoneNumber: string;
   address: string;
   registrationDate: string;
-  role: 'Admin' | 'User' | 'Guest';
-  status: 'active' | 'suspended' | 'unavailable';
+  roleID: number;
+  roleName: string;
+  statusID: number;
+  statusName: string;
 }

@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IUserList } from '../../interface/user-setting.interface';
 import { MOCK_USERS } from '../../mock/admin-setting.mock';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminSettingService {
-  constructor() {}
+  baseUrl = 'http://localhost:8080';
+  constructor(private _http: HttpClient) {}
   getIUserList(): Observable<IUserList[]> {
-    // return this._http
-    //   .get<IUserList[]>('http://localhost:8080/api/role-permission')
-    //   .pipe(catchError(this.handleError<IUserList[]>('getIUserListList', [])));
-    return of(MOCK_USERS);
+    return this._http.get<IUserList[]>('http://localhost:8080/api/usersetting');
+    // return of(MOCK_USERS);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
