@@ -1,4 +1,9 @@
 <div>
+  <app-button
+    [buttonName]="BUTTONNAME.ADD"
+    [disabledButton]="false"
+    (clickButtonEmitter)="onClickButton($event)"
+  ></app-button>
   <app-button-group
     [buttonGroup]="buttonGroup"
     [selectedItem]="[]"
@@ -17,12 +22,12 @@
         [inputClass]="'input-text-width-20vw'"
       ></app-form-input>
 
-      <app-form-input
+      <!-- <app-form-input
         [inputType]="'Text'"
         [fieldName]="'Password'"
         [formControlName]="'password'"
         [inputClass]="'input-text-width-20vw'"
-      ></app-form-input>
+      ></app-form-input> -->
     </div>
     <div class="field-layout">
       <app-form-input
