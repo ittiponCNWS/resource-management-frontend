@@ -14,6 +14,7 @@ import { AbstractControl, NgControl } from '@angular/forms';
   selector: '[appInputRequire]',
 })
 export class InputRequireDirective implements OnInit {
+  @Input() fieldName: string = 'This field'; // Default fallback
   @Input('appInputRequire') formControl!: AbstractControl;
 
   private errorMessageEl: HTMLElement | null = null;
@@ -51,7 +52,7 @@ export class InputRequireDirective implements OnInit {
       (control.dirty || control.touched);
 
     if (hasError) {
-      this.showErrorMessage('This field is required.');
+      this.showErrorMessage(`${this.fieldName} is required.`);
     } else {
       this.removeErrorMessage();
     }
@@ -60,14 +61,28 @@ export class InputRequireDirective implements OnInit {
   private showErrorMessage(message: string) {
     if (this.errorMessageEl) return;
 
+    const wrapper = this.renderer.createElement('div');
+    this.renderer.setStyle(wrapper, 'position', 'relative');
+    this.renderer.setStyle(wrapper, 'display', 'inline-block');
+    this.renderer.setStyle(wrapper, 'width', '100%');
+
+    // ย้าย input เข้า wrapper
+    const parent = this.renderer.parentNode(this.el.nativeElement);
+    this.renderer.insertBefore(parent, wrapper, this.el.nativeElement);
+    this.renderer.removeChild(parent, this.el.nativeElement);
+    this.renderer.appendChild(wrapper, this.el.nativeElement);
+
+    // สร้าง error message
     this.errorMessageEl = this.renderer.createElement('div');
     this.renderer.setStyle(this.errorMessageEl, 'color', 'red');
     this.renderer.setStyle(this.errorMessageEl, 'fontSize', '0.8em');
-    this.renderer.setStyle(this.errorMessageEl, 'marginTop', '4px');
+    this.renderer.setStyle(this.errorMessageEl, 'position', 'absolute');
+    this.renderer.setStyle(this.errorMessageEl, 'left', '0');
+    this.renderer.setStyle(this.errorMessageEl, 'bottom', '-1.2em');
     this.renderer.setProperty(this.errorMessageEl, 'innerText', message);
 
-    const parent = this.renderer.parentNode(this.el.nativeElement);
-    this.renderer.appendChild(parent, this.errorMessageEl);
+    // เพิ่ม error message เข้า wrapper
+    this.renderer.appendChild(wrapper, this.errorMessageEl);
   }
 
   private removeErrorMessage() {

@@ -42,6 +42,7 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
   @Input() optionValue: string = 'value';
   @Input() optionLabel: string = 'label';
   @Input() isGeneratePassword: boolean = false;
+  @Input() isShowTimeDatePicker: boolean = false;
 
   @Output() textChange = new EventEmitter<string>();
   @Output() valueChange = new EventEmitter<any>();

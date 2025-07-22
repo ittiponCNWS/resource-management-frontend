@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IUser } from '../../interface/user-setting.interface';
-import { MOCK_USERS } from '../../mock/admin-setting.mock';
 import { HttpClient } from '@angular/common/http';
 import { IDeletePayload } from '../../interface/friend.interface';
 import { AdminSettingFactory } from '../model/admin-setting.model';
@@ -19,8 +18,11 @@ export class AdminSettingService {
     // return of(MOCK_USERS);
   }
 
+  getUserByID(userID: number): Observable<IUser> {
+    return this._http.get<IUser>(this.baseUrl + '/api/usersetting/' + userID);
+  }
+
   createUser(payload: IUser): Observable<any> {
-    console.log(payload);
     const req = this.userFactory.createUser(payload);
     return this._http.post<IUser>(this.baseUrl + '/api/usersetting', req);
     // return of(MOCK_FRIEND_LIST);

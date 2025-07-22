@@ -1,6 +1,6 @@
 export interface IUser {
   userID: number;
-  username: string;
+  userName: string;
   password: string;
   // email: string;
   firstName: string;
@@ -9,7 +9,7 @@ export interface IUser {
   gender: 'Male' | 'Female' | 'Other' | null;
   phoneNumber: string;
   address: string;
-  registrationDate: Date;
+  registerDate: Date;
   roleID: number;
   roleName: string;
   statusID: number;
@@ -17,7 +17,7 @@ export interface IUser {
 }
 
 export interface ICreateUserReq {
-  username: string;
+  userName: string;
   password: string;
   // email: string;
   firstName: string;
@@ -26,15 +26,15 @@ export interface ICreateUserReq {
   gender: 'Male' | 'Female' | 'Other' | null;
   phoneNumber: string;
   address: string;
-  registrationDate: string;
+  registerDate: string;
   roleID: number | null;
   statusID: number | null;
 }
 
 export interface IUpdateUserCreateReq {
   userID: number;
-  username: string;
-  password: string;
+  userName: string;
+  // password: string;
   // email: string;
   firstName: string;
   lastName: string;
@@ -42,7 +42,7 @@ export interface IUpdateUserCreateReq {
   gender: 'Male' | 'Female' | 'Other' | null;
   phoneNumber: string;
   address: string;
-  registrationDate: string;
+  registerDate: string;
   roleID: number | null;
   statusID: number | null;
 }

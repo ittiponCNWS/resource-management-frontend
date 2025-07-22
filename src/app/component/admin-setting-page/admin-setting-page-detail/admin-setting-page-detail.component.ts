@@ -17,6 +17,7 @@ import { LoadingService } from '../../../../../shared/service/loading.service';
 import { ResetPasswordDialogComponent } from '../reset-password-dialog/reset-password-dialog.component';
 import { AppDialogService } from '../../../../../shared/service/app-dialog.service';
 import { AdminSettingService } from '../../../service/admin-setting.service';
+import { IUser } from '../../../../interface/user-setting.interface';
 
 @Component({
   selector: 'app-admin-setting-page-detail',
@@ -29,6 +30,7 @@ export class AdminSettingPageDetailComponent implements OnInit {
   gendetDropdownOption = GENDER_DROPDOWN;
   roleDropdownOption: IRoleDropdown[] = [];
   statusDropdownOption: IStatusDropdown[] = [];
+  buttonGroup = [this.BUTTONNAME.SAVE, this.BUTTONNAME.CANCEL];
   actionType: ACTION_TYPE | null = null;
   formGroup: FormGroup;
   id: number = 0;
@@ -46,14 +48,14 @@ export class AdminSettingPageDetailComponent implements OnInit {
       this.id = params['userID'] ?? 0;
     });
     this.formGroup = new FormGroup({
-      username: new FormControl('ond009', [Validators.required]),
+      userName: new FormControl(null, [Validators.required]),
       password: new FormControl(null),
-      firstName: new FormControl('Ittipon', [Validators.required]),
-      lastName: new FormControl('Chinawangso', [Validators.required]),
+      firstName: new FormControl(null, [Validators.required]),
+      lastName: new FormControl(null, [Validators.required]),
       birthDay: new FormControl(new Date(), [Validators.required]),
-      phoneNumber: new FormControl('0918850500', [Validators.required]),
+      phoneNumber: new FormControl(null, [Validators.required]),
       gender: new FormControl(null, [Validators.required]),
-      registerDate: new FormControl(new Date()),
+      registerDate: new FormControl({ value: new Date(), disabled: true }),
       roleID: new FormControl(null, [Validators.required]),
       statusID: new FormControl(null, [Validators.required]),
     });
@@ -67,6 +69,13 @@ export class AdminSettingPageDetailComponent implements OnInit {
       next: (result) => {
         this.roleDropdownOption = result.roleDropdown;
         this.statusDropdownOption = result.statusDropdown;
+
+        // Step 2: Check action
+        if (this.actionType !== 'Add') {
+          this.fetchUserById();
+        } else {
+          this._loadingService.hide(); // No need to fetch by id
+        }
       },
       error: (err) => {
         console.error('Fetch data error', err);
@@ -77,7 +86,27 @@ export class AdminSettingPageDetailComponent implements OnInit {
     });
   }
 
-  buttonGroup = [this.BUTTONNAME.SAVE, this.BUTTONNAME.CANCEL];
+  fetchUserById() {
+    this._admingSettingService.getUserByID(this.id).subscribe({
+      next: (user: IUser) => {
+        this.formGroup.patchValue(this.convertUserDates(user));
+      },
+      error: (err) => {
+        console.error('Fetch user by ID error', err);
+      },
+      complete: () => {
+        this._loadingService.hide();
+      },
+    });
+  }
+
+  convertUserDates(user: IUser): any {
+    return {
+      ...user,
+      dateOfBirth: user.dateOfBirth ? new Date(user.dateOfBirth) : null,
+      registerDate: user.registerDate ? new Date(user.registerDate) : null,
+    };
+  }
 
   onClickButton(eventType: BUTTON_NAME) {
     switch (eventType) {

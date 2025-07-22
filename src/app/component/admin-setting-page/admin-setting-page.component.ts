@@ -61,7 +61,7 @@ export class AdminSettingPageComponent {
         this._router.navigate(['admin-setting-page-detail'], {
           relativeTo: this._route,
           queryParams: {
-            actionType: ACTION_TYPE.ADD,
+            actionType: ACTION_TYPE.EDIT,
             userID: this.selectedAdminList[0].userID,
           },
         });

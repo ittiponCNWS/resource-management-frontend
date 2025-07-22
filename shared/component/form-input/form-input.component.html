@@ -13,8 +13,10 @@
           ' ng-invalid ng-dirty':
             getControl?.invalid && (getControl?.touched || getControl?.dirty)
         }"
-        [appInputRequire]="ngControl.control!"
+        [disabled]="disabled"
         [style.width]="isGeneratePassword ? 'calc(20vw - 4vw)' : '20vw'"
+        [appInputRequire]="ngControl.control!"
+        [fieldName]="fieldName"
       />
 
       <app-button
@@ -36,6 +38,9 @@
         'ng-invalid ng-dirty':
           getControl?.invalid && (getControl?.touched || getControl?.dirty)
       }"
+      [disabled]="disabled"
+      [appInputRequire]="ngControl.control!"
+      [fieldName]="fieldName"
     ></p-inputNumber>
   </div>
 
@@ -48,11 +53,15 @@
       [showIcon]="true"
       (input)="onInput($event)"
       [appInputRequire]="ngControl.control!"
+      [fieldName]="fieldName"
       [class]="inputClass"
+      [showTime]="isShowTimeDatePicker"
+      [hourFormat]="'24'"
       [ngClass]="{
         ' ng-invalid ng-dirty':
           getControl?.invalid && (getControl?.touched || getControl?.dirty)
       }"
+      [disabled]="disabled"
     ></p-calendar>
   </div>
 
@@ -70,7 +79,9 @@
       placeholder="Select"
       [(ngModel)]="value"
       (onChange)="onSelect($event)"
+      [disabled]="disabled"
       [appInputRequire]="ngControl.control!"
+      [fieldName]="fieldName"
     />
   </div>
 
@@ -82,7 +93,9 @@
         ' ng-invalid ng-dirty':
           getControl?.invalid && (getControl?.touched || getControl?.dirty)
       }"
+      [disabled]="disabled"
       [appInputRequire]="ngControl.control!"
+      [fieldName]="fieldName"
     ></p-inputSwitch>
   </div>
 
