@@ -18,7 +18,7 @@ export class FriendPageDialogComponent implements OnInit {
   gendetDropdownOption = GENDER_DROPDOWN;
   configDataRow!: IDialogConfig;
   buttonGroup = [this.BUTTONNAME.SAVE, this.BUTTONNAME.CANCEL];
-  dialogType: 'Add' | 'Edit' = 'Add';
+  dialogType: 'Add' | 'Edit' | 'ResetPassword' | null = null;
   id: number | null = null;
 
   constructor(

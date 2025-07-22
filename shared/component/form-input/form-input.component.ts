@@ -17,6 +17,7 @@ import {
   NgControl,
   ValidationErrors,
 } from '@angular/forms';
+import { BUTTON_NAME } from '../../const/shared.enum';
 
 @Component({
   selector: 'app-form-input',
@@ -26,6 +27,7 @@ import {
 })
 export class FormInputComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {}
+  BUTTONNAME = BUTTON_NAME;
 
   @Input({ required: true }) inputType!:
     | 'Text'
@@ -39,9 +41,11 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
   @Input() dropdownOption: any[] = [];
   @Input() optionValue: string = 'value';
   @Input() optionLabel: string = 'label';
+  @Input() isGeneratePassword: boolean = false;
 
   @Output() textChange = new EventEmitter<string>();
   @Output() valueChange = new EventEmitter<any>();
+  // @Output() clickGeneratePassword = new EventEmitter<string>();
 
   private onValidatorChange: () => void = () => {};
   private _onValidate:
@@ -115,5 +119,17 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
     this.onChange(this.value);
     this.onTouched();
     this.valueChange.emit(this.value);
+  }
+
+  generatePassword(): void {
+    const length = 10;
+    const charset =
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+
+    const generatedPassword = Array.from(
+      { length },
+      () => charset[Math.floor(Math.random() * charset.length)]
+    ).join('');
+    this.updateValue(generatedPassword);
   }
 }

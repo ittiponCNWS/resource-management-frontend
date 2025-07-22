@@ -1,7 +1,7 @@
-<div>
+<div class="flex-end">
   <app-button-group
     [buttonGroup]="buttonGroup"
-    [selectedItem]="selectedItem"
+    [selectedItem]="selectedAdminList"
     (clickButtonEmitter)="onClickButton($event)"
     [buttonJustifyContent]="'end'"
   ></app-button-group>
@@ -11,7 +11,7 @@
   <p-table
     [(selection)]="selectedAdminList"
     [value]="adminList"
-    dataKey="id"
+    dataKey="userID"
     [scrollable]="true"
     scrollHeight="60vh"
     scrollDirection="horizontal"

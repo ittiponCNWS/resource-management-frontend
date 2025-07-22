@@ -8,3 +8,9 @@
 .role-name-input {
   display: flex;
 }
+
+.button-container {
+  display: flex;
+  justify-content: end;
+  align-items: center; /* optional: vertically align if heights differ */
+}

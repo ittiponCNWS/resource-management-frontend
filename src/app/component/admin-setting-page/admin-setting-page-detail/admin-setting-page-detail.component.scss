@@ -13,3 +13,10 @@
 .form-content {
   padding: 2rem 10vw;
 }
+
+.button-container {
+  display: flex;
+  justify-content: end;
+  align-items: center; /* optional: vertically align if heights differ */
+  gap: 8px; /* optional: add space between button and group */
+}

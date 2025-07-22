@@ -1,15 +1,16 @@
-<div>
+<div class="button-container">
   <app-button
-    [buttonName]="BUTTONNAME.ADD"
+    *ngIf="actionType === ACTION_TYPE.EDIT"
+    [buttonName]="BUTTONNAME.RESET_PASSWORD"
     [disabledButton]="false"
-    (clickButtonEmitter)="onClickButton($event)"
-  ></app-button>
+    (clickButtonEmitter)="clickResetPassword()"
+  />
   <app-button-group
     [buttonGroup]="buttonGroup"
     [selectedItem]="[]"
-    (clickButtonEmitter)="onClickButton($event)"
     [buttonJustifyContent]="'end'"
-  ></app-button-group>
+    (clickButtonEmitter)="onClickButton($event)"
+  />
 </div>
 
 <div class="form-content">
@@ -22,12 +23,14 @@
         [inputClass]="'input-text-width-20vw'"
       ></app-form-input>
 
-      <!-- <app-form-input
+      <app-form-input
+        *ngIf="actionType === ACTION_TYPE.ADD"
         [inputType]="'Text'"
         [fieldName]="'Password'"
         [formControlName]="'password'"
         [inputClass]="'input-text-width-20vw'"
-      ></app-form-input> -->
+        [isGeneratePassword]="true"
+      ></app-form-input>
     </div>
     <div class="field-layout">
       <app-form-input
@@ -65,14 +68,14 @@
         [inputType]="'Text'"
         [fieldName]="'Phone Number'"
         [formControlName]="'phoneNumber'"
-        [inputClass]="'input-text-width-20vw'"
+        [inputClass]="'input-width-20vw'"
       ></app-form-input>
 
       <app-form-input
         [inputType]="'Date'"
         [fieldName]="'Register Date'"
         [formControlName]="'registerDate'"
-        [inputClass]="'input-text-width-20vw'"
+        [inputClass]="'input-width-20vw'"
       ></app-form-input>
     </div>
 

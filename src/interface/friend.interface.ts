@@ -20,6 +20,6 @@ export interface IFriendCreateReq {
   remark: string;
 }
 
-export interface IFriendDeleteRequest {
+export interface IDeletePayload {
   idList: number[];
 }

@@ -2,18 +2,28 @@
   <label class="field-label">{{ fieldName }}</label>
   <!-- Text Input -->
   <div *ngSwitchCase="'Text'">
-    <input
-      pInputText
-      type="text"
-      [ngModel]="value"
-      (input)="onInput($event)"
-      [class]="inputClass"
-      [ngClass]="{
-        ' ng-invalid ng-dirty':
-          getControl?.invalid && (getControl?.touched || getControl?.dirty)
-      }"
-      [appInputRequire]="ngControl.control!"
-    />
+    <div class="input-button-wrapper">
+      <input
+        pInputText
+        type="text"
+        [ngModel]="value"
+        (input)="onInput($event)"
+        [class]="inputClass"
+        [ngClass]="{
+          ' ng-invalid ng-dirty':
+            getControl?.invalid && (getControl?.touched || getControl?.dirty)
+        }"
+        [appInputRequire]="ngControl.control!"
+        [style.width]="isGeneratePassword ? 'calc(20vw - 4vw)' : '20vw'"
+      />
+
+      <app-button
+        *ngIf="isGeneratePassword"
+        [buttonName]="BUTTONNAME.GENERATE"
+        [disabledButton]="false"
+        (clickButtonEmitter)="generatePassword()"
+      />
+    </div>
   </div>
 
   <!-- Number Input -->

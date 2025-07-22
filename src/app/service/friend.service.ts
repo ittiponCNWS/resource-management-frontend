@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { Friend, IFriendDeleteRequest } from '../../interface/friend.interface';
+import { Friend, IDeletePayload } from '../../interface/friend.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MOCK_FRIEND_LIST } from '../../mock/friend.mock';
 import { FriendFactory } from '../model/friend.model';
@@ -36,10 +36,9 @@ export class FriendService {
   deleteFriend(friendList: Friend[]): Observable<any> {
     const req = this.friendFactory.deleteFriendReq(friendList);
     console.log(req);
-    return this._http.delete<IFriendDeleteRequest>(
-      this.baseUrl + '/api/friend',
-      { body: req }
-    );
+    return this._http.delete<IDeletePayload>(this.baseUrl + '/api/friend', {
+      body: req,
+    });
     // return of(MOCK_FRIEND_LIST);
   }
 

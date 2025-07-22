@@ -1,18 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IUserList } from '../../interface/user-setting.interface';
+import { IUser } from '../../interface/user-setting.interface';
 import { MOCK_USERS } from '../../mock/admin-setting.mock';
 import { HttpClient } from '@angular/common/http';
+import { IDeletePayload } from '../../interface/friend.interface';
+import { AdminSettingFactory } from '../model/admin-setting.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminSettingService {
   baseUrl = 'http://localhost:8080';
+  userFactory = new AdminSettingFactory();
+
   constructor(private _http: HttpClient) {}
-  getIUserList(): Observable<IUserList[]> {
-    return this._http.get<IUserList[]>('http://localhost:8080/api/usersetting');
+  getIUserList(): Observable<IUser[]> {
+    return this._http.get<IUser[]>(this.baseUrl + '/api/usersetting');
     // return of(MOCK_USERS);
+  }
+
+  createUser(payload: IUser): Observable<any> {
+    console.log(payload);
+    const req = this.userFactory.createUser(payload);
+    return this._http.post<IUser>(this.baseUrl + '/api/usersetting', req);
+    // return of(MOCK_FRIEND_LIST);
+  }
+
+  editUser(payload: IUser, id: number): Observable<any> {
+    const req = this.userFactory.updateUser(payload, id);
+    return this._http.put<IUser>(this.baseUrl + '/api/usersetting', req);
+    // return of(MOCK_FRIEND_LIST);
+  }
+
+  deleteUser(friendList: IUser[]): Observable<any> {
+    const req = this.userFactory.deleteUserReq(friendList);
+    console.log(req);
+    return this._http.delete<IDeletePayload>(
+      this.baseUrl + '/api/usersetting',
+      {
+        body: req,
+      }
+    );
+    // return of(MOCK_FRIEND_LIST);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

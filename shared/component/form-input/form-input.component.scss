@@ -59,3 +59,17 @@
     width: 60vw;
   }
 }
+
+.input-button-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.input-button-wrapper input {
+  flex: 1; /* Input takes remaining space */
+}
+
+.input-button-wrapper app-button {
+  flex: none; /* Button takes only the size it needs */
+  margin-left: 8px; /* Optional spacing */
+}

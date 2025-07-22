@@ -57,10 +57,12 @@
       ></app-form-input>
     </div>
   </form>
-  <app-button-group
-    [buttonGroup]="buttonGroup"
-    [selectedItem]="null"
-    [buttonJustifyContent]="'center'"
-    (clickButtonEmitter)="onClickButton($event)"
-  ></app-button-group>
+  <div class="button-container">
+    <app-button-group
+      [buttonGroup]="buttonGroup"
+      [selectedItem]="null"
+      [buttonJustifyContent]="'center'"
+      (clickButtonEmitter)="onClickButton($event)"
+    ></app-button-group>
+  </div>
 </div>

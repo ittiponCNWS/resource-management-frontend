@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { BUTTON_NAME } from '../../../../shared/const/shared.enum';
+import { ACTION_TYPE, BUTTON_NAME } from '../../../../shared/const/shared.enum';
 import { FormControl } from '@angular/forms';
 import { AdminSettingService } from '../../service/admin-setting.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUserList } from '../../../interface/user-setting.interface';
+import { IUser } from '../../../interface/user-setting.interface';
+import { AppDialogService } from '../../../../shared/service/app-dialog.service';
+import { LoadingService } from '../../../../shared/service/loading.service';
 
 @Component({
   selector: 'app-admin-setting-page',
@@ -12,9 +14,8 @@ import { IUserList } from '../../../interface/user-setting.interface';
 })
 export class AdminSettingPageComponent {
   BUTTONNAME = BUTTON_NAME;
-  selectedItem = [];
-  adminList!: IUserList[];
-  selectedAdminList!: any;
+  adminList!: IUser[];
+  selectedAdminList!: any[];
   searchField = new FormControl('');
 
   buttonGroup = [
@@ -27,10 +28,16 @@ export class AdminSettingPageComponent {
   constructor(
     private _adminSettingService: AdminSettingService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _appDialogService: AppDialogService,
+    private _loadingService: LoadingService
   ) {}
 
   ngOnInit() {
+    this.getUserList();
+  }
+
+  private getUserList() {
     this._adminSettingService.getIUserList().subscribe({
       next: (res) => {
         this.adminList = res;
@@ -44,16 +51,45 @@ export class AdminSettingPageComponent {
       case BUTTON_NAME.ADD: {
         this._router.navigate(['admin-setting-page-detail'], {
           relativeTo: this._route,
+          queryParams: {
+            actionType: ACTION_TYPE.ADD,
+          },
         });
-        console.log('ADD Event');
         break;
       }
       case BUTTON_NAME.EDIT: {
-        console.log('EDIT Event');
+        this._router.navigate(['admin-setting-page-detail'], {
+          relativeTo: this._route,
+          queryParams: {
+            actionType: ACTION_TYPE.ADD,
+            userID: this.selectedAdminList[0].userID,
+          },
+        });
         break;
       }
       case BUTTON_NAME.DELETE: {
-        console.log('DELETE Event');
+        this._appDialogService
+          .openDeleteDialog({ dialogType: 'Delete' })
+          .onClose.subscribe((res) => {
+            if (res === true) {
+              this._loadingService.show();
+              this._adminSettingService
+                .deleteUser(this.selectedAdminList)
+                .subscribe({
+                  next: () => {
+                    this.selectedAdminList = [];
+                    this._loadingService.hide();
+                  },
+                  error: (err) => {
+                    console.log(err.error.message);
+                    this._loadingService.hide();
+                  },
+                  complete: () => {
+                    this.getUserList();
+                  },
+                });
+            }
+          });
         break;
       }
       case BUTTON_NAME.EXPORT: {

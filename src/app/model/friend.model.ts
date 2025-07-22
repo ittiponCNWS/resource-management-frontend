@@ -1,7 +1,7 @@
 import {
   Friend,
   IFriendCreateReq,
-  IFriendDeleteRequest,
+  IDeletePayload,
 } from '../../interface/friend.interface';
 
 export class FriendFactory {
@@ -35,7 +35,7 @@ export class FriendFactory {
     };
   }
 
-  public deleteFriendReq(friendList: Friend[]): IFriendDeleteRequest {
+  public deleteFriendReq(friendList: Friend[]): IDeletePayload {
     return {
       idList: [
         ...friendList.map((friend) => {
