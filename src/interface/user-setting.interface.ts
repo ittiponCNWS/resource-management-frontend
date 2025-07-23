@@ -50,3 +50,8 @@ export interface IUpdateUserCreateReq {
 export interface IDeletePayload {
   idList: number[];
 }
+
+export interface IResetPasswordReq {
+  userID: number;
+  newPassword: string;
+}

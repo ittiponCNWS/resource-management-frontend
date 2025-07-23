@@ -1,6 +1,7 @@
 import {
   ICreateUserReq,
   IDeletePayload,
+  IResetPasswordReq,
   IUpdateUserCreateReq,
   IUser,
 } from '../../interface/user-setting.interface';
@@ -53,6 +54,16 @@ export class AdminSettingFactory {
           return user.userID;
         }),
       ],
+    };
+  }
+
+  public resetPasswordReq(
+    userID: number,
+    newPassword: string
+  ): IResetPasswordReq {
+    return {
+      userID: userID,
+      newPassword: newPassword,
     };
   }
 }

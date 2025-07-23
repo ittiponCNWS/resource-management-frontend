@@ -3,7 +3,7 @@
     *ngIf="actionType === ACTION_TYPE.EDIT"
     [buttonName]="BUTTONNAME.RESET_PASSWORD"
     [disabledButton]="false"
-    (clickButtonEmitter)="clickResetPassword()"
+    (clickButtonEmitter)="onClickButton($event)"
   />
   <app-button-group
     [buttonGroup]="buttonGroup"

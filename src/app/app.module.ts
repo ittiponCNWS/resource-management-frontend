@@ -26,6 +26,7 @@ import { FriendPageDialogComponent } from './component/friend-page/friend-page-d
 import { AdminSettingPageDetailComponent } from './component/admin-setting-page/admin-setting-page-detail/admin-setting-page-detail.component';
 import { RolePermissionDetailPageComponent } from './component/role-permission-page/role-permission-detail-page/role-permission-detail-page.component';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ResetPasswordDialogComponent } from './component/admin-setting-page/reset-password-dialog/reset-password-dialog.component';
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     AdminSettingPageDetailComponent,
     RolePermissionPageComponent,
     RolePermissionDetailPageComponent,
+    ResetPasswordDialogComponent,
   ],
   bootstrap: [AppComponent],
   exports: [RouterModule],

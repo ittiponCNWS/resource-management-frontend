@@ -46,6 +46,15 @@ export class AdminSettingService {
     // return of(MOCK_FRIEND_LIST);
   }
 
+  resetPassword(userID: number, newPassword: string): Observable<any> {
+    const req = this.userFactory.resetPasswordReq(userID, newPassword);
+    return this._http.post<IDeletePayload>(
+      this.baseUrl + '/api/usersetting/reset-password',
+      req
+    );
+    // return of(MOCK_FRIEND_LIST);
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure

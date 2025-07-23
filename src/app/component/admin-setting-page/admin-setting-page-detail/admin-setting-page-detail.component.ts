@@ -140,6 +140,21 @@ export class AdminSettingPageDetailComponent implements OnInit {
         }
         break;
       }
+      case BUTTON_NAME.RESET_PASSWORD: {
+        this._appDialogService
+          .openDialog(
+            {
+              headerDialog: 'Reset Password',
+              data: { userID: this.id },
+              dialogType: 'ResetPassword',
+            },
+            ResetPasswordDialogComponent
+          )
+          .onClose.subscribe((res) => {
+            console.log('reset success');
+          });
+        break;
+      }
       case BUTTON_NAME.CANCEL: {
         this._router.navigate(['main/admin-setting']);
         break;
@@ -147,20 +162,5 @@ export class AdminSettingPageDetailComponent implements OnInit {
       default:
         break;
     }
-  }
-
-  clickResetPassword() {
-    this._appDialogService
-      .openDialog(
-        {
-          headerDialog: 'Reset Password',
-          data: null,
-          dialogType: 'ResetPassword',
-        },
-        ResetPasswordDialogComponent
-      )
-      .onClose.subscribe((res) => {
-        console.log('reset success');
-      });
   }
 }

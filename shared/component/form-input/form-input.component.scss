@@ -9,6 +9,10 @@
   color: #495057;
 }
 
+.input-text-width-5vw {
+  width: 5vw;
+}
+
 .input-text-width-10vw {
   width: 10vw;
 }
@@ -34,6 +38,10 @@
 }
 
 :host::ng-deep {
+  .input-width-5vw span,
+  .input-width-5vw .p-dropdown {
+    width: 5vw;
+  }
   .input-width-10vw span,
   .input-width-10vw .p-dropdown {
     width: 10vw;

@@ -63,8 +63,7 @@ export class InputRequireDirective implements OnInit {
 
     const wrapper = this.renderer.createElement('div');
     this.renderer.setStyle(wrapper, 'position', 'relative');
-    this.renderer.setStyle(wrapper, 'display', 'inline-block');
-    this.renderer.setStyle(wrapper, 'width', '100%');
+    // this.renderer.setStyle(wrapper, 'display', 'inline-block');
 
     // ย้าย input เข้า wrapper
     const parent = this.renderer.parentNode(this.el.nativeElement);
