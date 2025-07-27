@@ -18,6 +18,7 @@ import { ResetPasswordDialogComponent } from '../reset-password-dialog/reset-pas
 import { AppDialogService } from '../../../../../shared/service/app-dialog.service';
 import { AdminSettingService } from '../../../service/admin-setting.service';
 import { IUser } from '../../../../interface/user-setting.interface';
+import { ToastService } from '../../../../../shared/service/toast.service';
 
 @Component({
   selector: 'app-admin-setting-page-detail',
@@ -41,7 +42,8 @@ export class AdminSettingPageDetailComponent implements OnInit {
     private _loadingService: LoadingService,
     private _dropdownService: DropdownService,
     private _appDialogService: AppDialogService,
-    private _admingSettingService: AdminSettingService
+    private _admingSettingService: AdminSettingService,
+    private _toastService: ToastService
   ) {
     this._route.queryParams.subscribe((params) => {
       this.actionType = params['actionType'];
@@ -118,6 +120,7 @@ export class AdminSettingPageDetailComponent implements OnInit {
               .subscribe({
                 next: () => {
                   this._router.navigate(['main/admin-setting']);
+                  this._toastService.showSuccess('Add User Success.');
                 },
                 error: (err) => {
                   console.log(err.error?.message);
@@ -129,6 +132,7 @@ export class AdminSettingPageDetailComponent implements OnInit {
               .subscribe({
                 next: () => {
                   this._router.navigate(['main/admin-setting']);
+                  this._toastService.showSuccess('Update User Success.');
                 },
                 error: (err) => {
                   console.log(err.error?.message);
@@ -151,7 +155,7 @@ export class AdminSettingPageDetailComponent implements OnInit {
             ResetPasswordDialogComponent
           )
           .onClose.subscribe((res) => {
-            console.log('reset success');
+            if (res) this._toastService.showSuccess('Reset Password Success.');
           });
         break;
       }

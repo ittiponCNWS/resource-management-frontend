@@ -20,6 +20,14 @@
   width: 3.5vw;
 }
 
+/* ตำแหน่งไอคอน cog ไปไว้ขวาบน */
+.top-right-menu {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
 /* Inner content (hamburger always visible) */
 .menu-inner {
   display: flex;
@@ -122,5 +130,22 @@
     .p-menuitem:not(.p-highlight):not(.p-disabled)
     > .p-menuitem-content:hover {
     background-color: $background-btn-menu-item-hover !important;
+  }
+
+  /* ลดขนาดเมนูให้เล็กลง */
+  .small-dropdown-menu .p-menu {
+    width: 10vw;
+  }
+
+  .small-dropdown-menu .p-menuitem {
+    font-size: 14px;
+  }
+
+  .small-dropdown-menu
+    .p-menu
+    .p-menuitem
+    > .p-menuitem-content
+    .p-menuitem-link {
+    padding: 0.6rem;
   }
 }

@@ -14,6 +14,9 @@ import { ConfirmationDialogComponent } from './component/confirmation-dialog/con
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoadingComponent } from './component/loading/loading.component';
 import { InputRequireDirective } from './directive/inputRequire.directive';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ToastService } from './service/toast.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { InputRequireDirective } from './directive/inputRequire.directive';
     DropdownModule,
     InputSwitchModule,
     ProgressSpinnerModule,
+    ToastModule,
   ],
   exports: [
     CommonModule,
@@ -45,6 +49,6 @@ import { InputRequireDirective } from './directive/inputRequire.directive';
     LoadingComponent,
     InputRequireDirective,
   ],
-  providers: [DialogService],
+  providers: [DialogService, MessageService, ToastService],
 })
 export class SharedModule {}

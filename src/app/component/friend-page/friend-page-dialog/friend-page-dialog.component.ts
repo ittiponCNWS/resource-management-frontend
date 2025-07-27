@@ -69,9 +69,7 @@ export class FriendPageDialogComponent implements OnInit {
                 next: () => {
                   this._AppDialogService.closeDialog(true);
                 },
-                error: (err) => {
-                  console.log(err.error?.message);
-                },
+                error: (err) => {},
               });
           } else if (this.dialogType === 'Edit') {
             this._friendService
@@ -80,9 +78,7 @@ export class FriendPageDialogComponent implements OnInit {
                 next: () => {
                   this._AppDialogService.closeDialog(true);
                 },
-                error: (err) => {
-                  console.log(err.error?.message);
-                },
+                error: (err) => {},
               });
           }
         } else {

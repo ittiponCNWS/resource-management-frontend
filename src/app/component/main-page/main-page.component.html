@@ -74,7 +74,19 @@
           <div class="user-icons">
             {{ userName }}
             <i class="pi pi-bell" title="Notifications"></i>
-            <i class="pi pi-cog" title="Settings"></i>
+            <div
+              class="settings-dropdown"
+              #menuTrigger
+              (click)="menu.toggle($event)"
+            >
+              <i class="pi pi-cog" style="cursor: pointer" title="Settings"></i>
+            </div>
+            <p-menu
+              #menu
+              [popup]="true"
+              [model]="cogIconMenu"
+              class="small-dropdown-menu"
+            ></p-menu>
           </div></div
       ></p-card>
     </div>
@@ -84,3 +96,5 @@
     </div>
   </div>
 </div>
+
+<!-- PrimeNG Menu -->

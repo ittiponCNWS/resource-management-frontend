@@ -27,6 +27,7 @@ import { AdminSettingPageDetailComponent } from './component/admin-setting-page/
 import { RolePermissionDetailPageComponent } from './component/role-permission-page/role-permission-detail-page/role-permission-detail-page.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ResetPasswordDialogComponent } from './component/admin-setting-page/reset-password-dialog/reset-password-dialog.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { ResetPasswordDialogComponent } from './component/admin-setting-page/res
     MenuModule,
     TableModule,
     CheckboxModule,
+    ToastModule,
 
     SharedModule, // ✅ Import here
     RouterModule.forRoot(routes),

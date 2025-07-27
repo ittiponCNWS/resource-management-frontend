@@ -7,15 +7,31 @@
             <p>Soong System</p>
           </div>
           <div style="padding: 0.5rem 0rem">
-            <p class="input-title">username</p>
-            <input type="text" pInputText formControlName="username" />
+            <p class="input-title">Username</p>
+            <input
+              type="text"
+              pInputText
+              formControlName="username"
+              [ngClass]="{
+                ' ng-invalid ng-dirty':
+                  getControl('username')?.invalid &&
+                  (getControl('username')?.touched ||
+                    getControl('username')?.dirty)
+              }"
+            />
           </div>
           <div style="padding: 0.5rem 0rem">
-            <p class="input-title">password</p>
+            <p class="input-title">Password</p>
             <p-password
               formControlName="password"
               [toggleMask]="true"
               [feedback]="false"
+              [ngClass]="{
+                ' ng-invalid ng-dirty':
+                  getControl('password')?.invalid &&
+                  (getControl('password')?.touched ||
+                    getControl('password')?.dirty)
+              }"
             />
             <div style="padding: 0.5rem 0rem">
               <a href="">Forget Password?</a>

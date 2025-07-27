@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -9,10 +10,11 @@ import { MenuItem } from 'primeng/api';
 export class MainPageComponent {
   sidebarVisible = true;
   items: MenuItem[] | undefined;
+  cogIconMenu: MenuItem[] | undefined;
   titleName: string = 'Home';
   userName: string = 'Ittipon Chinawangso';
 
-  constructor() {
+  constructor(private _router: Router, private _route: ActivatedRoute) {
     this.items = [
       {
         label: 'Home',
@@ -51,9 +53,37 @@ export class MainPageComponent {
       { label: 'Role Permission 3' },
       { label: 'Role Permission 4' },
     ];
+
+    this.cogIconMenu = [
+      {
+        label: 'Setting',
+        icon: 'pi pi-sliders-h',
+        command: () => {
+          this.onSetting();
+        },
+      },
+      {
+        label: 'Logout',
+        icon: 'pi pi-sign-out',
+        command: () => {
+          this.onLogout();
+        },
+      },
+    ];
   }
 
   onVisibleChange() {
     this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  onSetting() {
+    // Handle setting logic
+    console.log('Go to setting page');
+  }
+
+  onLogout() {
+    // Handle logout logic
+    localStorage.removeItem('token');
+    this._router.navigate(['/login']);
   }
 }

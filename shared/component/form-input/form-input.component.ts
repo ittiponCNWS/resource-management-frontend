@@ -55,7 +55,6 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
 
   constructor(@Optional() @Self() public ngControl: NgControl) {
     if (this.ngControl) this.ngControl.valueAccessor = this;
-    console.log(this.ngControl.valueAccessor);
   }
 
   get getControl() {

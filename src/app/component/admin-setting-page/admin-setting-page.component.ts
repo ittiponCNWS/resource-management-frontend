@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from '../../../interface/user-setting.interface';
 import { AppDialogService } from '../../../../shared/service/app-dialog.service';
 import { LoadingService } from '../../../../shared/service/loading.service';
+import { ToastService } from '../../../../shared/service/toast.service';
 
 @Component({
   selector: 'app-admin-setting-page',
@@ -30,7 +31,8 @@ export class AdminSettingPageComponent {
     private _router: Router,
     private _route: ActivatedRoute,
     private _appDialogService: AppDialogService,
-    private _loadingService: LoadingService
+    private _loadingService: LoadingService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -38,10 +40,14 @@ export class AdminSettingPageComponent {
   }
 
   private getUserList() {
+    this._loadingService.show();
     this._adminSettingService.getIUserList().subscribe({
       next: (res) => {
         this.adminList = res;
-        console.log(res);
+        this._loadingService.hide();
+      },
+      error: () => {
+        this._loadingService.hide();
       },
     });
   }
@@ -79,9 +85,9 @@ export class AdminSettingPageComponent {
                   next: () => {
                     this.selectedAdminList = [];
                     this._loadingService.hide();
+                    this._toastService.showSuccess('Delete User Success.');
                   },
                   error: (err) => {
-                    console.log(err.error.message);
                     this._loadingService.hide();
                   },
                   complete: () => {
@@ -93,7 +99,6 @@ export class AdminSettingPageComponent {
         break;
       }
       case BUTTON_NAME.EXPORT: {
-        console.log('EXPORT Event');
         break;
       }
       default:
@@ -101,7 +106,5 @@ export class AdminSettingPageComponent {
     }
   }
 
-  onSelectionChange(selectedItem: any) {
-    console.log(selectedItem);
-  }
+  onSelectionChange(selectedItem: any) {}
 }

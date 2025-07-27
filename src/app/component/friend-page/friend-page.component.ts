@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { AppDialogService } from '../../../../shared/service/app-dialog.service';
 import { FriendPageDialogComponent } from './friend-page-dialog/friend-page-dialog.component';
 import { LoadingService } from '../../../../shared/service/loading.service';
+import { ToastService } from '../../../../shared/service/toast.service';
 
 @Component({
   selector: 'app-friend-page',
@@ -27,7 +28,8 @@ export class FriendPageComponent {
   constructor(
     private _friendService: FriendService,
     private _appDialogService: AppDialogService,
-    private _loadingService: LoadingService
+    private _loadingService: LoadingService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -53,7 +55,10 @@ export class FriendPageComponent {
             FriendPageDialogComponent
           )
           .onClose.subscribe((res) => {
-            if (res === true) this.getFriendList();
+            if (res === true) {
+              this.getFriendList();
+              this._toastService.showSuccess('Add Friend Success');
+            }
           });
         break;
       }
@@ -71,6 +76,7 @@ export class FriendPageComponent {
             if (res === true) {
               this.getFriendList();
               this.selectedFriendList = [];
+              this._toastService.showSuccess('Update Friend Success');
             }
           });
         break;
@@ -80,7 +86,6 @@ export class FriendPageComponent {
         this._appDialogService
           .openDeleteDialog({ dialogType: 'Delete' })
           .onClose.subscribe((res) => {
-            console.log(res);
             if (res === true) {
               this._loadingService.show();
               this._friendService
@@ -89,9 +94,9 @@ export class FriendPageComponent {
                   next: () => {
                     this.selectedFriendList = [];
                     this._loadingService.hide();
+                    this._toastService.showSuccess('Delete Friend Success');
                   },
                   error: (err) => {
-                    console.log(err.error.message);
                     this._loadingService.hide();
                   },
                   complete: () => {
@@ -103,7 +108,6 @@ export class FriendPageComponent {
         break;
       }
       case BUTTON_NAME.EXPORT: {
-        console.log('EXPORT Event');
         break;
       }
       default:
@@ -111,7 +115,5 @@ export class FriendPageComponent {
     }
   }
 
-  onSelectionChange(selectedItem: any) {
-    console.log(selectedItem);
-  }
+  onSelectionChange(selectedItem: any) {}
 }
