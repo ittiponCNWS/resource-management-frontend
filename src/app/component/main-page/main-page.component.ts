@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { TOKEN_KEY } from '../../../../shared/const';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-main-page',
@@ -14,7 +16,7 @@ export class MainPageComponent {
   titleName: string = 'Home';
   userName: string = 'Ittipon Chinawangso';
 
-  constructor(private _router: Router, private _route: ActivatedRoute) {
+  constructor(private _router: Router, private _authSerivce: AuthService) {
     this.items = [
       {
         label: 'Home',
@@ -83,7 +85,7 @@ export class MainPageComponent {
 
   onLogout() {
     // Handle logout logic
-    localStorage.removeItem('token');
+    this._authSerivce.deleteToken();
     this._router.navigate(['/login']);
   }
 }

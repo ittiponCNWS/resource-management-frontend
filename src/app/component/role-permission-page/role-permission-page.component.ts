@@ -3,6 +3,7 @@ import { BUTTON_NAME } from '../../../../shared/const/shared.enum';
 import { FormControl } from '@angular/forms';
 import { RolePermissionService } from '../../service/role-permission.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { IRolePermissionRes } from '../../../interface/role-permission.interface';
 
 @Component({
   selector: 'app-role-permission-page',
@@ -11,7 +12,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 })
 export class RolePermissionPageComponent implements OnInit {
   BUTTONNAME = BUTTON_NAME;
-  rolePermissionList!: any[];
+  rolePermissionList!: IRolePermissionRes[];
   selectedRolePermissionList!: any;
   searchField = new FormControl('');
 

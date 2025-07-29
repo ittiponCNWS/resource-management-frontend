@@ -20,7 +20,11 @@ import { HomePageComponent } from './component/home-page/home-page.component';
 import { FriendPageComponent } from './component/friend-page/friend-page.component';
 import { AdminSettingPageComponent } from './component/admin-setting-page/admin-setting-page.component';
 import { SharedModule } from '../../shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { RolePermissionPageComponent } from './component/role-permission-page/role-permission-page.component';
 import { FriendPageDialogComponent } from './component/friend-page/friend-page-dialog/friend-page-dialog.component';
 import { AdminSettingPageDetailComponent } from './component/admin-setting-page/admin-setting-page-detail/admin-setting-page-detail.component';
@@ -28,6 +32,8 @@ import { RolePermissionDetailPageComponent } from './component/role-permission-p
 import { CheckboxModule } from 'primeng/checkbox';
 import { ResetPasswordDialogComponent } from './component/admin-setting-page/reset-password-dialog/reset-password-dialog.component';
 import { ToastModule } from 'primeng/toast';
+import { authGuard } from '../../shared/guards/auth.guard';
+import { authInterceptor } from '../../shared/interceptors/auth.interceptor';
 
 @NgModule({
   imports: [
@@ -66,5 +72,6 @@ import { ToastModule } from 'primeng/toast';
   ],
   bootstrap: [AppComponent],
   exports: [RouterModule],
+  providers: [provideHttpClient(withInterceptors([authInterceptor]))],
 })
 export class AppModule {}

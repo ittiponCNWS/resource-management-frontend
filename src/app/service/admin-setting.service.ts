@@ -4,18 +4,20 @@ import { IUser } from '../../interface/user-setting.interface';
 import { HttpClient } from '@angular/common/http';
 import { IDeletePayload } from '../../interface/friend.interface';
 import { AdminSettingFactory } from '../model/admin-setting.model';
+import { AuthService } from './auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminSettingService {
-  baseUrl = 'http://localhost:8080';
+  baseUrl = environment.apiBaseURL;
   userFactory = new AdminSettingFactory();
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private _authService: AuthService) {}
+
   getIUserList(): Observable<IUser[]> {
     return this._http.get<IUser[]>(this.baseUrl + '/api/usersetting');
-    // return of(MOCK_USERS);
   }
 
   getUserByID(userID: number): Observable<IUser> {
@@ -24,14 +26,16 @@ export class AdminSettingService {
 
   createUser(payload: IUser): Observable<any> {
     const req = this.userFactory.createUser(payload);
-    return this._http.post<IUser>(this.baseUrl + '/api/usersetting', req);
-    // return of(MOCK_FRIEND_LIST);
+    return this._http.post<IUser>(this.baseUrl + '/api/usersetting', {
+      body: req,
+    });
   }
 
   editUser(payload: IUser, id: number): Observable<any> {
     const req = this.userFactory.updateUser(payload, id);
-    return this._http.put<IUser>(this.baseUrl + '/api/usersetting', req);
-    // return of(MOCK_FRIEND_LIST);
+    return this._http.put<IUser>(this.baseUrl + '/api/usersetting', {
+      body: req,
+    });
   }
 
   deleteUser(friendList: IUser[]): Observable<any> {
@@ -43,16 +47,16 @@ export class AdminSettingService {
         body: req,
       }
     );
-    // return of(MOCK_FRIEND_LIST);
   }
 
   resetPassword(userID: number, newPassword: string): Observable<any> {
     const req = this.userFactory.resetPasswordReq(userID, newPassword);
     return this._http.post<IDeletePayload>(
       this.baseUrl + '/api/usersetting/reset-password',
-      req
+      {
+        body: req,
+      }
     );
-    // return of(MOCK_FRIEND_LIST);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

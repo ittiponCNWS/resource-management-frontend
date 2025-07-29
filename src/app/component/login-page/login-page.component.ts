@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,13 +10,14 @@ import { AuthService } from '../../service/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from '../../../../shared/service/toast.service';
 import { LoadingService } from '../../../../shared/service/loading.service';
+import { TOKEN_KEY } from '../../../../shared/const';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
@@ -32,6 +33,12 @@ export class LoginPageComponent {
     });
   }
 
+  ngOnInit(): void {
+    if (this._authSerivce.isLoggedIn()) {
+      this._router.navigate(['/main/home']);
+    }
+  }
+
   getControl(controlName: string) {
     return this.loginForm.controls[controlName];
   }
@@ -43,7 +50,7 @@ export class LoginPageComponent {
       this._authSerivce.signIn(this.loginForm.getRawValue()).subscribe({
         next: (res) => {
           this._router.navigate(['/main'], { relativeTo: this._route });
-          localStorage.setItem('token', res.token);
+          this._authSerivce.saveToken(res.token);
           this._loadingService.hide();
         },
         error: (error: HttpErrorResponse) => {

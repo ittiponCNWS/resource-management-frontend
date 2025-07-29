@@ -1,45 +1,41 @@
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { Friend, IDeletePayload } from '../../interface/friend.interface';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MOCK_FRIEND_LIST } from '../../mock/friend.mock';
+import { IFriendRes, IDeletePayload } from '../../interface/friend.interface';
+import { HttpClient } from '@angular/common/http';
 import { FriendFactory } from '../model/friend.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FriendService {
-  baseUrl = 'http://localhost:8080';
+  baseUrl = environment.apiBaseURL;
   friendFactory = new FriendFactory();
 
   constructor(private _http: HttpClient) {}
 
-  getFriendList(): Observable<Friend[]> {
+  getFriendList(): Observable<IFriendRes[]> {
     return this._http
-      .get<Friend[]>(this.baseUrl + '/api/friend')
-      .pipe(catchError(this.handleError<Friend[]>('getFriendList', [])));
-    // return of(MOCK_FRIEND_LIST);
+      .get<IFriendRes[]>(this.baseUrl + '/api/friend')
+      .pipe(catchError(this.handleError<IFriendRes[]>('getFriendList', [])));
   }
 
-  createFriend(payload: Friend): Observable<any> {
+  createFriend(payload: IFriendRes): Observable<any> {
     const req = this.friendFactory.createFriend(payload);
-    return this._http.post<Friend>(this.baseUrl + '/api/friend', req);
-    // return of(MOCK_FRIEND_LIST);
+    return this._http.post<IFriendRes>(this.baseUrl + '/api/friend', req);
   }
 
-  editFriend(payload: Friend, id: number): Observable<any> {
+  editFriend(payload: IFriendRes, id: number): Observable<any> {
     const req = this.friendFactory.editFriend(payload, id);
-    return this._http.put<Friend>(this.baseUrl + '/api/friend', req);
-    // return of(MOCK_FRIEND_LIST);
+    return this._http.put<IFriendRes>(this.baseUrl + '/api/friend', req);
   }
 
-  deleteFriend(friendList: Friend[]): Observable<any> {
+  deleteFriend(friendList: IFriendRes[]): Observable<any> {
     const req = this.friendFactory.deleteFriendReq(friendList);
     console.log(req);
     return this._http.delete<IDeletePayload>(this.baseUrl + '/api/friend', {
       body: req,
     });
-    // return of(MOCK_FRIEND_LIST);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

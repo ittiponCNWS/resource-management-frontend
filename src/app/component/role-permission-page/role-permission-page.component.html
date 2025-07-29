@@ -14,7 +14,7 @@
     [rows]="5"
     [scrollable]="true"
     scrollDirection="horizontal"
-    dataKey="id"
+    dataKey="roleID"
     [tableStyle]="{ 'min-width': '40rem' }"
     (selectionChange)="onSelectionChange($event)"
   >
@@ -46,7 +46,7 @@
       <tr>
         <td><p-tableCheckbox [value]="role" /></td>
         <td>{{ role.roleName }}</td>
-        <td>{{ role.remark }}</td>
+        <td>{{ role.roleDescription }}</td>
       </tr>
     </ng-template>
   </p-table>

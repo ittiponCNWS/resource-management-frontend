@@ -8,6 +8,7 @@ import { HomePageComponent } from './component/home-page/home-page.component';
 import { RolePermissionPageComponent } from './component/role-permission-page/role-permission-page.component';
 import { AdminSettingPageDetailComponent } from './component/admin-setting-page/admin-setting-page-detail/admin-setting-page-detail.component';
 import { RolePermissionDetailPageComponent } from './component/role-permission-page/role-permission-detail-page/role-permission-detail-page.component';
+import { authGuard } from '../../shared/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,26 +25,32 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomePageComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'friend',
         component: FriendPageComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'role-permission',
         component: RolePermissionPageComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'role-permission/role-permission-detail-page',
         component: RolePermissionDetailPageComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'admin-setting',
         component: AdminSettingPageComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'admin-setting/admin-setting-page-detail',
         component: AdminSettingPageDetailComponent,
+        canActivate: [authGuard],
       },
     ],
   },

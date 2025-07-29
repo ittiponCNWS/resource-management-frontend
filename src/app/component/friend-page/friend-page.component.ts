@@ -6,6 +6,7 @@ import { AppDialogService } from '../../../../shared/service/app-dialog.service'
 import { FriendPageDialogComponent } from './friend-page-dialog/friend-page-dialog.component';
 import { LoadingService } from '../../../../shared/service/loading.service';
 import { ToastService } from '../../../../shared/service/toast.service';
+import { IFriendRes } from '../../../interface/friend.interface';
 
 @Component({
   selector: 'app-friend-page',
@@ -14,7 +15,7 @@ import { ToastService } from '../../../../shared/service/toast.service';
 })
 export class FriendPageComponent {
   BUTTONNAME = BUTTON_NAME;
-  friendList!: any[];
+  friendList!: IFriendRes[];
   selectedFriendList!: any;
   searchField = new FormControl('');
 

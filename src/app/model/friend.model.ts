@@ -1,11 +1,11 @@
 import {
-  Friend,
+  IFriendRes,
   IFriendCreateReq,
   IDeletePayload,
 } from '../../interface/friend.interface';
 
 export class FriendFactory {
-  public createFriend(data?: Friend): IFriendCreateReq {
+  public createFriend(data?: IFriendRes): IFriendCreateReq {
     return {
       id: data?.id ?? 0,
       firstName: data?.firstName ?? '',
@@ -20,7 +20,7 @@ export class FriendFactory {
     };
   }
 
-  public editFriend(data: Friend, id: number): IFriendCreateReq {
+  public editFriend(data: IFriendRes, id: number): IFriendCreateReq {
     return {
       id: id ?? 0,
       firstName: data?.firstName ?? '',
@@ -35,7 +35,7 @@ export class FriendFactory {
     };
   }
 
-  public deleteFriendReq(friendList: Friend[]): IDeletePayload {
+  public deleteFriendReq(friendList: IFriendRes[]): IDeletePayload {
     return {
       idList: [
         ...friendList.map((friend) => {

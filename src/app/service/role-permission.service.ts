@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { RolePermission } from '../../interface/role-permission.interface';
+import { IRolePermissionRes } from '../../interface/role-permission.interface';
 import { Observable, of } from 'rxjs';
-import { MOCK_ROLE_PERMISSIONS } from '../../mock/role-permission.mock';
+import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RolePermissionService {
-  constructor() {}
-  getRolePermissionList(): Observable<RolePermission[]> {
-    // return this._http
-    //   .get<RolePermission[]>('http://localhost:8080/api/role-permission')
-    //   .pipe(catchError(this.handleError<RolePermission[]>('getRolePermissionList', [])));
-    return of(MOCK_ROLE_PERMISSIONS);
+  baseUrl = environment.apiBaseURL;
+
+  constructor(private _http: HttpClient) {}
+  getRolePermissionList(): Observable<IRolePermissionRes[]> {
+    return this._http.get<IRolePermissionRes[]>(this.baseUrl + '/api/role');
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

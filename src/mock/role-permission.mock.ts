@@ -1,29 +1,29 @@
-import { RolePermission } from '../interface/role-permission.interface';
+import { IRolePermissionRes } from '../interface/role-permission.interface';
 
-export const MOCK_ROLE_PERMISSIONS: RolePermission[] = [
+export const MOCK_ROLE_PERMISSIONS: IRolePermissionRes[] = [
   {
-    id: 1,
+    roleID: 1,
     roleName: 'Admin',
-    remark: 'Has full access to all system features.',
+    roleDescription: 'Has full access to all system features.',
   },
   {
-    id: 2,
+    roleID: 2,
     roleName: 'Editor',
-    remark: 'Can create and update content but not delete.',
+    roleDescription: 'Can create and update content but not delete.',
   },
   {
-    id: 3,
+    roleID: 3,
     roleName: 'Viewer',
-    remark: 'Can only view content. No edit permissions.',
+    roleDescription: 'Can only view content. No edit permissions.',
   },
   {
-    id: 4,
+    roleID: 4,
     roleName: 'Moderator',
-    remark: 'Can manage user comments and flag content.',
+    roleDescription: 'Can manage user comments and flag content.',
   },
   {
-    id: 5,
+    roleID: 5,
     roleName: 'Guest',
-    remark: 'Temporary access with limited permissions.',
+    roleDescription: 'Temporary access with limited permissions.',
   },
 ];

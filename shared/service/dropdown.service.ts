@@ -5,12 +5,13 @@ import {
   IRoleDropdown,
   IStatusDropdown,
 } from '../interface/dropdown.interface';
+import { environment } from '../../src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DropdownService {
-  baseUrl = 'http://localhost:8080/api/dropdown/';
+  baseUrl = environment.apiBaseURL;
   constructor(private _http: HttpClient) {}
 
   getRoleDropdownList(): Observable<[IRoleDropdown]> {

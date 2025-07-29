@@ -1,5 +1,5 @@
-export interface RolePermission {
-  id: number; // Unique identifier
+export interface IRolePermissionRes {
+  roleID: number; // Unique identifier
   roleName: string; // Name of the role (e.g., Admin, User)
-  remark: string; // Description or note about the role
+  roleDescription: string; // Description or note about the role
 }

@@ -1,4 +1,4 @@
-export interface Friend {
+export interface IFriendRes {
   id: number;
   firstName: string;
   lastName: string;
