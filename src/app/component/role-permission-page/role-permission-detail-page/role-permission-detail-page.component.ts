@@ -3,6 +3,9 @@ import { BUTTON_NAME } from '../../../../../shared/const/shared.enum';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { DropdownService } from '../../../../../shared/service/dropdown.service';
+import { IPageDropdown } from '../../../../../shared/interface/dropdown.interface';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-role-permission-detail-page',
@@ -17,34 +20,34 @@ export class RolePermissionDetailPageComponent implements OnInit {
     return this.form.get('permissions') as FormArray;
   }
 
-  pageList = [
-    { name: 'Home' },
-    { name: 'Friend' },
-    { name: 'Role Permission' },
-    { name: 'Admin Setting' },
-    { name: 'Page Role 1' },
-    { name: 'Page Role 2' },
-    { name: 'Page Role 3' },
-    { name: 'Page Role 4' },
-    { name: 'Page Role 1' },
-    { name: 'Page Role 2' },
-    { name: 'Page Role 3' },
-    { name: 'Page Role 4' },
-  ];
+  pageList: IPageDropdown[] = [];
 
   constructor(
     private _router: Router,
     private _location: Location,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private _dropdownService: DropdownService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this._dropdownService.getCommonPage().subscribe({
+      next: (pages) => {
+        this.pageList = pages;
+        this.buildForm(); // 🔧 Build form after data is ready
+      },
+      error: (err) => {},
+    });
+  }
+
+  buildForm() {
     this.form = this._fb.group({
       roleName: this._fb.control(''),
+      roleDescription: this._fb.control(''),
       permissions: this._fb.array(
         this.pageList.map((page) =>
           this._fb.group({
-            pageName: [page.name],
+            pageID: [page.pageID],
+            pageName: [page.pageName],
             view: [false],
             create: [false],
             edit: [false],

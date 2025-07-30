@@ -15,7 +15,7 @@ export class AuthService {
   constructor(private _http: HttpClient) {}
 
   signIn(loginObj: ILogin): Observable<ITokenRes> {
-    return this._http.post<ITokenRes>(this.baseUrl + '/api/signin', loginObj);
+    return this._http.post<ITokenRes>(this.baseUrl + '/signin', loginObj);
   }
 
   isLoggedIn() {

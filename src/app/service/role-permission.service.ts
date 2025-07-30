@@ -12,7 +12,7 @@ export class RolePermissionService {
 
   constructor(private _http: HttpClient) {}
   getRolePermissionList(): Observable<IRolePermissionRes[]> {
-    return this._http.get<IRolePermissionRes[]>(this.baseUrl + '/api/role');
+    return this._http.get<IRolePermissionRes[]>(this.baseUrl + '/role');
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

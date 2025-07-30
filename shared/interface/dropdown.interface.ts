@@ -7,3 +7,8 @@ export interface IStatusDropdown {
   statusID: number;
   statusName: string;
 }
+
+export interface IPageDropdown {
+  pageID: number;
+  pageName: string;
+}

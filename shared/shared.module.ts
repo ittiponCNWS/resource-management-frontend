@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Button, ButtonModule } from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { ButtonComponent } from './component/button/button.component';
 import { ButtonGroupComponent } from './component/button-group/button-group.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
@@ -17,6 +17,7 @@ import { InputRequireDirective } from './directive/inputRequire.directive';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ToastService } from './service/toast.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ToastService } from './service/toast.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ButtonModule,
     DynamicDialogModule,
     InputTextModule,

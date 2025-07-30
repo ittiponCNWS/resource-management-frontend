@@ -7,7 +7,7 @@
   ></app-button-group>
 </div>
 
-<form [formGroup]="form">
+<form *ngIf="form" [formGroup]="form">
   <div class="field-layout">
     <div class="role-name-input">
       <p>Role Name :</p>
@@ -15,6 +15,17 @@
         [inputType]="'Text'"
         [fieldName]="''"
         [formControlName]="'roleName'"
+        [inputClass]="'input-text-width-20vw'"
+      ></app-form-input>
+    </div>
+  </div>
+  <div class="field-layout">
+    <div class="role-name-input">
+      <p>Role Description :</p>
+      <app-form-input
+        [inputType]="'Text'"
+        [fieldName]="''"
+        [formControlName]="'roleDescription'"
         [inputClass]="'input-text-width-20vw'"
       ></app-form-input>
     </div>

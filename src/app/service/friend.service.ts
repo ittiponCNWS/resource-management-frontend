@@ -16,24 +16,24 @@ export class FriendService {
 
   getFriendList(): Observable<IFriendRes[]> {
     return this._http
-      .get<IFriendRes[]>(this.baseUrl + '/api/friend')
+      .get<IFriendRes[]>(this.baseUrl + '/friend')
       .pipe(catchError(this.handleError<IFriendRes[]>('getFriendList', [])));
   }
 
   createFriend(payload: IFriendRes): Observable<any> {
     const req = this.friendFactory.createFriend(payload);
-    return this._http.post<IFriendRes>(this.baseUrl + '/api/friend', req);
+    return this._http.post<IFriendRes>(this.baseUrl + '/friend', req);
   }
 
   editFriend(payload: IFriendRes, id: number): Observable<any> {
     const req = this.friendFactory.editFriend(payload, id);
-    return this._http.put<IFriendRes>(this.baseUrl + '/api/friend', req);
+    return this._http.put<IFriendRes>(this.baseUrl + '/friend', req);
   }
 
   deleteFriend(friendList: IFriendRes[]): Observable<any> {
     const req = this.friendFactory.deleteFriendReq(friendList);
     console.log(req);
-    return this._http.delete<IDeletePayload>(this.baseUrl + '/api/friend', {
+    return this._http.delete<IDeletePayload>(this.baseUrl + '/friend', {
       body: req,
     });
   }

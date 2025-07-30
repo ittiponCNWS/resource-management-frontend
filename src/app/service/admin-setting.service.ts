@@ -17,23 +17,23 @@ export class AdminSettingService {
   constructor(private _http: HttpClient, private _authService: AuthService) {}
 
   getIUserList(): Observable<IUser[]> {
-    return this._http.get<IUser[]>(this.baseUrl + '/api/usersetting');
+    return this._http.get<IUser[]>(this.baseUrl + '/usersetting');
   }
 
   getUserByID(userID: number): Observable<IUser> {
-    return this._http.get<IUser>(this.baseUrl + '/api/usersetting/' + userID);
+    return this._http.get<IUser>(this.baseUrl + '/usersetting/' + userID);
   }
 
   createUser(payload: IUser): Observable<any> {
     const req = this.userFactory.createUser(payload);
-    return this._http.post<IUser>(this.baseUrl + '/api/usersetting', {
+    return this._http.post<IUser>(this.baseUrl + '/usersetting', {
       body: req,
     });
   }
 
   editUser(payload: IUser, id: number): Observable<any> {
     const req = this.userFactory.updateUser(payload, id);
-    return this._http.put<IUser>(this.baseUrl + '/api/usersetting', {
+    return this._http.put<IUser>(this.baseUrl + '/usersetting', {
       body: req,
     });
   }
@@ -41,18 +41,15 @@ export class AdminSettingService {
   deleteUser(friendList: IUser[]): Observable<any> {
     const req = this.userFactory.deleteUserReq(friendList);
     console.log(req);
-    return this._http.delete<IDeletePayload>(
-      this.baseUrl + '/api/usersetting',
-      {
-        body: req,
-      }
-    );
+    return this._http.delete<IDeletePayload>(this.baseUrl + '/usersetting', {
+      body: req,
+    });
   }
 
   resetPassword(userID: number, newPassword: string): Observable<any> {
     const req = this.userFactory.resetPasswordReq(userID, newPassword);
     return this._http.post<IDeletePayload>(
-      this.baseUrl + '/api/usersetting/reset-password',
+      this.baseUrl + '/usersetting/reset-password',
       {
         body: req,
       }
