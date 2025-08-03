@@ -1,6 +1,6 @@
+import { IDeletePayload } from '../../../shared/interface/shared.interface';
 import {
   ICreateUserReq,
-  IDeletePayload,
   IResetPasswordReq,
   IUpdateUserCreateReq,
   IUser,
@@ -18,7 +18,6 @@ export class AdminSettingFactory {
         new Date().toLocaleDateString('en-CA'),
       gender: data?.gender ?? null,
       phoneNumber: data?.phoneNumber ?? '',
-      address: data?.address ?? '',
       registerDate:
         data?.registerDate?.toLocaleDateString('en-CA') ??
         new Date().toLocaleDateString('en-CA'),
@@ -38,7 +37,6 @@ export class AdminSettingFactory {
         new Date().toLocaleDateString('en-CA'),
       gender: data?.gender ?? null,
       phoneNumber: data?.phoneNumber ?? '',
-      address: data?.address ?? '',
       registerDate:
         data?.registerDate?.toLocaleDateString('en-CA') ??
         new Date().toLocaleDateString('en-CA'),

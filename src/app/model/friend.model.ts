@@ -1,8 +1,5 @@
-import {
-  IFriendRes,
-  IFriendCreateReq,
-  IDeletePayload,
-} from '../../interface/friend.interface';
+import { IDeletePayload } from '../../../shared/interface/shared.interface';
+import { IFriendRes, IFriendCreateReq } from '../../interface/friend.interface';
 
 export class FriendFactory {
   public createFriend(data?: IFriendRes): IFriendCreateReq {

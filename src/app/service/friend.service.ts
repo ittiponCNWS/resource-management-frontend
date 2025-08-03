@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { IFriendRes, IDeletePayload } from '../../interface/friend.interface';
+import { IFriendRes } from '../../interface/friend.interface';
 import { HttpClient } from '@angular/common/http';
 import { FriendFactory } from '../model/friend.model';
 import { environment } from '../../environments/environment';
+import { IDeletePayload } from '../../../shared/interface/shared.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -32,8 +33,7 @@ export class FriendService {
 
   deleteFriend(friendList: IFriendRes[]): Observable<any> {
     const req = this.friendFactory.deleteFriendReq(friendList);
-    console.log(req);
-    return this._http.delete<IDeletePayload>(this.baseUrl + '/friend', {
+    return this._http.delete<any>(this.baseUrl + '/friend', {
       body: req,
     });
   }

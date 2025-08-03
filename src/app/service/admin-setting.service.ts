@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IUser } from '../../interface/user-setting.interface';
 import { HttpClient } from '@angular/common/http';
-import { IDeletePayload } from '../../interface/friend.interface';
 import { AdminSettingFactory } from '../model/admin-setting.model';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
+import { IDeletePayload } from '../../../shared/interface/shared.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -26,9 +26,7 @@ export class AdminSettingService {
 
   createUser(payload: IUser): Observable<any> {
     const req = this.userFactory.createUser(payload);
-    return this._http.post<IUser>(this.baseUrl + '/usersetting', {
-      body: req,
-    });
+    return this._http.post<IUser>(this.baseUrl + '/usersetting', req);
   }
 
   editUser(payload: IUser, id: number): Observable<any> {
@@ -40,20 +38,16 @@ export class AdminSettingService {
 
   deleteUser(friendList: IUser[]): Observable<any> {
     const req = this.userFactory.deleteUserReq(friendList);
-    console.log(req);
-    return this._http.delete<IDeletePayload>(this.baseUrl + '/usersetting', {
+    return this._http.delete<any>(this.baseUrl + '/usersetting', {
       body: req,
     });
   }
 
   resetPassword(userID: number, newPassword: string): Observable<any> {
     const req = this.userFactory.resetPasswordReq(userID, newPassword);
-    return this._http.post<IDeletePayload>(
-      this.baseUrl + '/usersetting/reset-password',
-      {
-        body: req,
-      }
-    );
+    return this._http.post<any>(this.baseUrl + '/usersetting/reset-password', {
+      body: req,
+    });
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -1,6 +1,6 @@
-import { IRolePermissionRes } from '../interface/role-permission.interface';
+import { IRoleRes } from '../interface/role-permission.interface';
 
-export const MOCK_ROLE_PERMISSIONS: IRolePermissionRes[] = [
+export const MOCK_ROLE_PERMISSIONS: IRoleRes[] = [
   {
     roleID: 1,
     roleName: 'Admin',

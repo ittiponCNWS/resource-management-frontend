@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BUTTON_NAME } from '../../../../shared/const/shared.enum';
+import { ACTION_TYPE, BUTTON_NAME } from '../../../../shared/const/shared.enum';
 import { FormControl } from '@angular/forms';
 import { RolePermissionService } from '../../service/role-permission.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { IRolePermissionRes } from '../../../interface/role-permission.interface';
+import { IRoleRes } from '../../../interface/role-permission.interface';
+import { AppDialogService } from '../../../../shared/service/app-dialog.service';
+import { LoadingService } from '../../../../shared/service/loading.service';
+import { ToastService } from '../../../../shared/service/toast.service';
 
 @Component({
   selector: 'app-role-permission-page',
@@ -12,8 +15,8 @@ import { IRolePermissionRes } from '../../../interface/role-permission.interface
 })
 export class RolePermissionPageComponent implements OnInit {
   BUTTONNAME = BUTTON_NAME;
-  rolePermissionList!: IRolePermissionRes[];
-  selectedRolePermissionList!: any;
+  rolePermissionList!: IRoleRes[];
+  selectedRolePermissionList!: IRoleRes[];
   searchField = new FormControl('');
 
   buttonGroup = [
@@ -26,10 +29,17 @@ export class RolePermissionPageComponent implements OnInit {
   constructor(
     private _rolePermisisonService: RolePermissionService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _appDialogService: AppDialogService,
+    private _loadingService: LoadingService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit() {
+    this.getRoleList();
+  }
+
+  getRoleList() {
     this._rolePermisisonService.getRolePermissionList().subscribe({
       next: (res) => {
         this.rolePermissionList = res;
@@ -42,16 +52,45 @@ export class RolePermissionPageComponent implements OnInit {
       case BUTTON_NAME.ADD: {
         this._router.navigate(['role-permission-detail-page'], {
           relativeTo: this._route,
+          queryParams: {
+            actionType: ACTION_TYPE.ADD,
+          },
         });
-        console.log('ADD Event');
         break;
       }
       case BUTTON_NAME.EDIT: {
-        console.log('EDIT Event');
+        this._router.navigate(['role-permission-detail-page'], {
+          relativeTo: this._route,
+          queryParams: {
+            actionType: ACTION_TYPE.EDIT,
+            id: this.selectedRolePermissionList[0].roleID,
+          },
+        });
         break;
       }
       case BUTTON_NAME.DELETE: {
-        console.log('DELETE Event');
+        this._appDialogService
+          .openDeleteDialog({ dialogType: 'Delete' })
+          .onClose.subscribe((res) => {
+            if (res === true) {
+              this._loadingService.show();
+              this._rolePermisisonService
+                .deleteRole(this.selectedRolePermissionList)
+                .subscribe({
+                  next: () => {
+                    this.selectedRolePermissionList = [];
+                    this._loadingService.hide();
+                    this._toastService.showSuccess('Delete Role Success');
+                  },
+                  error: (err) => {
+                    this._loadingService.hide();
+                  },
+                  complete: () => {
+                    this.getRoleList();
+                  },
+                });
+            }
+          });
         break;
       }
       case BUTTON_NAME.EXPORT: {

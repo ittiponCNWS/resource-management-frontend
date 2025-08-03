@@ -9,6 +9,8 @@ import { RolePermissionPageComponent } from './component/role-permission-page/ro
 import { AdminSettingPageDetailComponent } from './component/admin-setting-page/admin-setting-page-detail/admin-setting-page-detail.component';
 import { RolePermissionDetailPageComponent } from './component/role-permission-page/role-permission-detail-page/role-permission-detail-page.component';
 import { authGuard } from '../../shared/guards/auth.guard';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { claimReq } from '../../shared/utils/claimReq-utils';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,6 +18,8 @@ export const routes: Routes = [
   {
     path: 'main',
     component: MainPageComponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       {
         path: '',
@@ -25,34 +29,50 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomePageComponent,
-        canActivate: [authGuard],
+        data: {
+          claimReq: claimReq.isAnonymous,
+        },
       },
       {
         path: 'friend',
         component: FriendPageComponent,
-        canActivate: [authGuard],
+        data: {
+          claimReq: claimReq.isAnonymous,
+        },
       },
       {
         path: 'role-permission',
         component: RolePermissionPageComponent,
-        canActivate: [authGuard],
+        data: {
+          claimReq: claimReq.isAdmin,
+        },
       },
       {
         path: 'role-permission/role-permission-detail-page',
         component: RolePermissionDetailPageComponent,
-        canActivate: [authGuard],
+        data: {
+          claimReq: claimReq.isAdmin,
+        },
       },
       {
         path: 'admin-setting',
         component: AdminSettingPageComponent,
-        canActivate: [authGuard],
+        data: {
+          claimReq: claimReq.isAdmin,
+        },
       },
       {
         path: 'admin-setting/admin-setting-page-detail',
         component: AdminSettingPageDetailComponent,
-        canActivate: [authGuard],
+        data: {
+          claimReq: claimReq.isAdmin,
+        },
       },
     ],
+  },
+  {
+    path: 'forbidden',
+    component: ForbiddenComponent,
   },
 ];
 

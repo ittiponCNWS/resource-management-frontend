@@ -52,16 +52,20 @@
       <tr [formGroup]="row">
         <!-- ✅ This is key -->
         <td>{{ row.get("pageName")?.value }}</td>
-        <td><p-checkbox formControlName="view" binary="true"></p-checkbox></td>
         <td>
-          <p-checkbox formControlName="create" binary="true"></p-checkbox>
-        </td>
-        <td><p-checkbox formControlName="edit" binary="true"></p-checkbox></td>
-        <td>
-          <p-checkbox formControlName="delete" binary="true"></p-checkbox>
+          <p-checkbox formControlName="isView" binary="true"></p-checkbox>
         </td>
         <td>
-          <p-checkbox formControlName="export" binary="true"></p-checkbox>
+          <p-checkbox formControlName="isCreate" binary="true"></p-checkbox>
+        </td>
+        <td>
+          <p-checkbox formControlName="isEdit" binary="true"></p-checkbox>
+        </td>
+        <td>
+          <p-checkbox formControlName="isDelete" binary="true"></p-checkbox>
+        </td>
+        <td>
+          <p-checkbox formControlName="isExport" binary="true"></p-checkbox>
         </td>
       </tr>
     </ng-template>

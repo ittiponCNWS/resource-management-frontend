@@ -8,7 +8,7 @@ export interface IUser {
   dateOfBirth: Date;
   gender: 'Male' | 'Female' | 'Other' | null;
   phoneNumber: string;
-  address: string;
+  // address: string;
   registerDate: Date;
   roleID: number;
   roleName: string;
@@ -25,7 +25,7 @@ export interface ICreateUserReq {
   dateOfBirth: string;
   gender: 'Male' | 'Female' | 'Other' | null;
   phoneNumber: string;
-  address: string;
+  // address: string;
   registerDate: string;
   roleID: number | null;
   statusID: number | null;
@@ -41,15 +41,13 @@ export interface IUpdateUserCreateReq {
   dateOfBirth: string;
   gender: 'Male' | 'Female' | 'Other' | null;
   phoneNumber: string;
-  address: string;
+  // address: string;
   registerDate: string;
   roleID: number | null;
   statusID: number | null;
 }
 
-export interface IDeletePayload {
-  idList: number[];
-}
+
 
 export interface IResetPasswordReq {
   userID: number;

@@ -20,6 +20,4 @@ export interface IFriendCreateReq {
   remark: string;
 }
 
-export interface IDeletePayload {
-  idList: number[];
-}
+

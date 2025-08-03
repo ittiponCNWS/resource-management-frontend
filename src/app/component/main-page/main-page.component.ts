@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { TOKEN_KEY } from '../../../../shared/const';
 import { AuthService } from '../../service/auth.service';
+import { claimReq } from '../../../../shared/utils/claimReq-utils';
 
 @Component({
   selector: 'app-main-page',
@@ -15,6 +15,7 @@ export class MainPageComponent {
   cogIconMenu: MenuItem[] | undefined;
   titleName: string = 'Home';
   userName: string = 'Ittipon Chinawangso';
+  claimReq = claimReq;
 
   constructor(private _router: Router, private _authSerivce: AuthService) {
     this.items = [
@@ -25,6 +26,7 @@ export class MainPageComponent {
           this.titleName = 'Home';
         },
         routerLinkActiveOptions: { exact: true },
+        visible: claimReq.isAnonymous(this._authSerivce.getClaims()),
       },
       {
         label: 'Friend',
@@ -33,6 +35,7 @@ export class MainPageComponent {
           this.titleName = 'Friend';
         },
         routerLinkActiveOptions: { exact: true },
+        visible: claimReq.isAnonymous(this._authSerivce.getClaims()),
       },
       {
         label: 'Role Permission',
@@ -41,6 +44,8 @@ export class MainPageComponent {
           this.titleName = 'Role Permission';
         },
         routerLinkActiveOptions: { exact: true },
+        //hide when is other role. show when is admin role
+        visible: claimReq.isAdmin(this._authSerivce.getClaims()),
       },
       {
         label: 'Admin Setting',
@@ -49,11 +54,29 @@ export class MainPageComponent {
           this.titleName = 'Admin Setting';
         },
         routerLinkActiveOptions: { exact: true },
+        //hide when is other role. show when is admin role
+        visible: claimReq.isAdmin(this._authSerivce.getClaims()),
       },
-      { label: 'Role Permission 1' },
-      { label: 'Role Permission 2' },
-      { label: 'Role Permission 3' },
-      { label: 'Role Permission 4' },
+      {
+        label: 'Page 1',
+        // hide when role is admin , show when is other role
+        visible: !claimReq.isAdmin(this._authSerivce.getClaims()),
+      },
+      {
+        label: 'Page 2',
+        // hide when role is admin , show when is other role
+        visible: !claimReq.isAdmin(this._authSerivce.getClaims()),
+      },
+      {
+        label: 'Page 3',
+        // hide when role is admin , show when is other role
+        visible: !claimReq.isAdmin(this._authSerivce.getClaims()),
+      },
+      {
+        label: 'Page 4',
+        // hide when role is admin , show when is other role
+        visible: !claimReq.isAdmin(this._authSerivce.getClaims()),
+      },
     ];
 
     this.cogIconMenu = [

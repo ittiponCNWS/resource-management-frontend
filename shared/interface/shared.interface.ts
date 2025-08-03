@@ -3,3 +3,7 @@ export interface IDialogConfig {
   headerDialog: string;
   dialogType: 'Add' | 'Edit' | 'ResetPassword';
 }
+
+export interface IDeletePayload {
+  idList: number[];
+}

@@ -33,4 +33,8 @@ export class AuthService {
   deleteToken() {
     return localStorage.removeItem(TOKEN_KEY);
   }
+
+  getClaims() {
+    return JSON.parse(window.atob(this.getToken()!.split('.')[1]));
+  }
 }

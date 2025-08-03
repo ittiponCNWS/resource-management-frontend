@@ -18,6 +18,7 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ToastService } from './service/toast.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HideIfClaimsNotMetDirective } from './directive/hide-if-claims-not-met.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     ConfirmationDialogComponent,
     LoadingComponent,
     InputRequireDirective,
+    HideIfClaimsNotMetDirective,
   ],
   imports: [
     CommonModule,
@@ -50,6 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     ConfirmationDialogComponent,
     LoadingComponent,
     InputRequireDirective,
+    HideIfClaimsNotMetDirective,
   ],
   providers: [DialogService, MessageService, ToastService],
 })

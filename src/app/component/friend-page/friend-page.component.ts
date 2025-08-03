@@ -81,7 +81,6 @@ export class FriendPageComponent {
             }
           });
         break;
-        break;
       }
       case BUTTON_NAME.DELETE: {
         this._appDialogService
